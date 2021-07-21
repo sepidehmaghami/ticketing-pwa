@@ -17,4 +17,4 @@ steps:
       - yarn build
     when:
       branch:
-        - drone
+        - main
