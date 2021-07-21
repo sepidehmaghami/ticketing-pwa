@@ -1,0 +1,16 @@
+Header,.ant-menu{
+    background-color: purple !important;
+}
+
+.display{
+    display: flex;
+    justify-content: space-between !important;
+    flex-wrap: wrap-reverse !important;
+}
+
+.icons-list{
+    color: white;
+    font-size: 20px;
+    cursor: pointer;
+}
+

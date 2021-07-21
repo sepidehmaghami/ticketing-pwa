@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" id="logo" width="67.327" height="30.675" viewBox="0 0 67.327 30.675">
+    <defs>
+        <style>
+            .cls-1{fill:#fff}
+        </style>
+    </defs>
+    <g id="Group_15862" transform="translate(0 1.135)">
+        <path id="Subtraction_1" d="M28.456 28.332h-3.715 3.715L25 22.734h-.02L17.077 9.442 8.923 23.15h12.619l3.2 5.178H0L17.077 0l17.077 28.327h-5.7z" class="cls-1"/>
+        <path id="Subtraction_2" d="M19.474 28.4L8.433 10.284l-.076.1-5.065 8.772L0 13.644 8.115.022V.01L8.128 0v.009L26.923 0 8.133.017l11 18.15L30.2 0h6.25L19.474 28.4z" class="cls-1" transform="translate(30.877)"/>
+    </g>
+    <path id="Rectangle_1134" fill="none" d="M0 0H67.101V30.675H0z" transform="translate(.113)"/>
+</svg>
