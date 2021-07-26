@@ -1,52 +1,57 @@
 import './forgot.css';
 import React, { useContext , useState } from "react";
-import { Layout } from 'antd';
+import { Layout,message } from 'antd';
 import { Row, Col } from 'antd';
 import imgLogin from '../../assets/login.jpg';
 import imagelogin from '../../assets/logo.svg';
 import { useHistory,useLocation } from 'react-router';
 import { Form, Input, Button, Checkbox } from 'antd';
 import {Helmet} from "react-helmet";
+import axios from "axios"
 const { Content } = Layout;
 
 function Forgot ()  {
   const [stge,setstage]=useState(false)
   const onFinished = (values) => {
-  fetch("https://api.ticket.tempserver.ir/api/reset-password/",{
-      method:"POST",
-      body:JSON.stringify({
-        email:values.email
-      }),
-      headers:new Headers({
+
+    axios.post("https://api.ticket.tempserver.ir/api/reset-password/",{
+      email:values.email
+    },{
+      headers:{
         "content-type": "application/json",
-      })
-    }).then((res)=>{
+      }
+    })
+    .then((res)=>{
+      console.log(res)
       if(res.status === 200){
         setstage(true)
+        message.success(res.data.message)
       }
-      return res.json()
+      return res.data
     }).then((result)=>{
         console.log(result)
+        
     })
     .catch(err=>console.log(err.message))
   };
 
   const onFinished2 = (values) => {
-    fetch("https://api.ticket.tempserver.ir/api/confirm-password/",{
-        method:"POST",
-        body:JSON.stringify({
-          token:values.token,
-          uid:values.uid,
-          password:values.password
-        }),
-        headers:new Headers({
+      axios.post("https://api.ticket.tempserver.ir/api/confirm-password/",
+      {
+        token:values.token,
+        uid:values.uid,
+        password:values.password
+      },{
+        headers:{
           "content-type": "application/json",
-        })
-      }).then((res)=>{
+        }
+      }
+      )
+      .then((res)=>{
         if(res.status===200){
           setstage(false)
         }
-        return res.json()
+        return res.data
       }).then((result)=>{
         alert(JSON.stringify(result))
         console.log(result)

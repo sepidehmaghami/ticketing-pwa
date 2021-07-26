@@ -8,6 +8,7 @@ import  { Redirect } from 'react-router-dom'
 import { Form, Input, Button, Checkbox } from 'antd';
 import { UserOutlined, LockOutlined } from '@ant-design/icons';
 import {Helmet} from "react-helmet";
+import axios from "axios"
 
 const { Content } = Layout;
 function Login ()  {
@@ -17,26 +18,13 @@ function Login ()  {
   const handleFormSubmit = values => {
     const name = values.username,
     pass=values.password
-
-    let formdata = new FormData();
-    formdata.append("username", name);
-    formdata.append("password", pass);
-    fetch("https://api.ticket.tempserver.ir/api/token/",{
-      method:"POST",
-      redirect:"follow",
-      body:JSON.stringify({
-        username:name,
-        password:pass
-      }),
-      headers:{
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-        }
-      }
-    )
+    axios.post("https://api.ticket.tempserver.ir/api/token/",{
+      username:name,
+      password:pass
+    })
     .then((res)=>{
       if(res.status===200){
-        return res.json()
+        return res.data
       }else if(res.status === 401){
         setmessageerr("username or password is invalid")
       }
@@ -53,7 +41,8 @@ function Login ()  {
         localStorage.removeItem("username")
       },3600*3*1000)
       setred(true)
-    }).catch((err)=>{
+    })
+    .catch((err)=>{
       console.log(err.message)
     })
   };
@@ -63,7 +52,7 @@ function Login ()  {
 };
   let redirected;
   if(red){
-    redirected=<Redirect to="/home"/>
+    redirected=<Redirect to="/dashboard"/>
   }
   
     return (
@@ -78,7 +67,7 @@ function Login ()  {
     <Content>
     <Row>
         <Col className="item_center" span={12}>  
-            <div><img src={imagelogin} className="imglogo"  alt="" /></div>
+            <div><img src={imagelogin} className="imglogo "  alt="" /></div>
             <p className="p-size">Welcome Back</p>
       
             <Form 
@@ -145,7 +134,7 @@ function Login ()  {
               </Col>
         <Col  span={12}>   
             <div>
-              <img src={imgLogin} className="grayscale" width="100%" height="721vh" alt="" />
+              <img src={imgLogin} className="grayscale loginImag" width="100%" height="721vh" alt="" />
               <p className="para"><span>Lorem ipsum dolor sit amet, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Egestas purus viverra accumsan in nisl nisi. Arcu cursus vitae congue mauris rhoncus aenean vel elit scelerisque. In egestas erat imperdiet sed euismod nisi porta lorem mollis. </span></p>
             </div>
         </Col>

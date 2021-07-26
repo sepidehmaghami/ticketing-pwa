@@ -8,6 +8,8 @@ import { Button } from 'antd';
 import { Avatar } from 'antd';
 import {useState,useEffect} from "react"
 import {Helmet} from "react-helmet";
+import axios from "axios"
+
 const {  Header,Content } = Layout;
 
 function Profile ()  {
@@ -28,16 +30,18 @@ function Profile ()  {
         teams:"",
         password:formdata.pass
       }
-      fetch("https://api.ticket.tempserver.ir/api/users/",{
-        method:"POST",
-        body:JSON.stringify(senddata),
-        headers: new Headers({
-          'content-type': 'application/json',
-          "AUTHORIZATION" : "Bearer "+token
-        })
-      }).then((res)=>{
-        return res.json()
+
+     
+      axios.post("https://api.ticket.tempserver.ir/api/users/",
+      senddata,
+      {
+        'content-type': 'application/json',
+        "AUTHORIZATION" : "Bearer "+token
+      })
+      .then((res)=>{
+        return res.data
       }).then((result)=>{
+        console.log(result)
         alert(JSON.stringify(result))
         setformdata({name: "", lastname: "", pass: "", confimpass: "", email: ""})
       }).catch((err)=>{
@@ -45,13 +49,13 @@ function Profile ()  {
       })
     }
     useEffect(()=>{
-      fetch("https://api.ticket.tempserver.ir/api/users/",{
-        method:"GET",
-        headers: new Headers({
+      axios.get("https://api.ticket.tempserver.ir/api/users/",{
+        headers: {
           'content-type': 'application/json',
           "AUTHORIZATION" : "Bearer "+ token
-        })
-      }).then((res)=>(res.json())).then((res)=>{
+        }
+       })
+      .then((res)=>(res.data)).then((res)=>{
         return res.results
       }).then((result)=>{
         const user=result.find((arr)=>{
@@ -90,7 +94,7 @@ function Profile ()  {
                     </Col>
 
                     <Col flex={1} className="left-border"></Col>
-                    <Col flex={4} style={{margin:"50px" , marginBottom:"0px"}}>
+                    <Col flex={4} className="form-con" style={{margin:"50px" , marginBottom:"0px"}}>
                     <form onSubmit={(e)=>{submitHandler(e)}}>
                     <h2>User Information</h2>
                     <Input size="large" value={formdata.name} onChange={(e)=>{setformdata((prev)=>{

@@ -1,3 +1,8 @@
 .ant-layout-content{
     background-color: white !important;
 }
+@media screen and (max-width:767px) {
+    main.ant-layout-content{
+        padding: 0 30px  !important;
+    }
+}

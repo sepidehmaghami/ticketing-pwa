@@ -1,11 +1,9 @@
 import Login from '../components/login/login';
 import Profile from '../components/profile/profile';
 import Guide from '../components/guide/guide';
-import Home from '../components/home/home';
+import Dashboard from '../components/dashboard/dashboard';
 import Forgot from '../components/forgot/forgot';
 import Register from '../components/register/register';
-import AddTicket from '../components/add ticket/add-ticket';
-import OpenTicket from '../components/open ticket/open-ticket';
 import 'antd/dist/antd.css';
 import {Route, BrowserRouter as Router, Switch, Redirect} from "react-router-dom";
 
@@ -15,7 +13,7 @@ function App() {
     <div className="App">       
          <Switch>
           <Route path="/" exact>
-          {JSON.parse(localStorage.getItem('auth')) ? <Redirect to="/home" /> : <Redirect to="/login" />}
+          {JSON.parse(localStorage.getItem('auth')) ? <Redirect to="/dashboard" /> : <Redirect to="/login" />}
           </Route>
           <Route path="/login">
           <Login />
@@ -26,8 +24,8 @@ function App() {
           <Route path="/forgot">
           <Forgot />
           </Route>
-          <PrivateRoute path="/home">
-            <Home />
+          <PrivateRoute path="/dashboard">
+            <Dashboard />
           </PrivateRoute>
           <PrivateRoute path="/guide">
           <Guide />
@@ -35,16 +33,6 @@ function App() {
           <PrivateRoute path="/profile">
           <Profile />
           </PrivateRoute>
-          
-          
-          {/* <Route path="/login" component={Login}/>
-          <Route path="/profile" component={Profile}/>
-          <Route path="/guide" component={Guide}/>
-          <Route path="/home" component={Home}/>
-          <Route path="/forgot" component={Forgot}/>
-          <Route path="/register" component={Register}/>
-          <Route path="/addticket" component={AddTicket}/>
-          <Route path="/openticket" component={OpenTicket}/> */}
         </Switch>
         </div>
     </Router>

@@ -48,9 +48,15 @@ p{
     font-size: large;
     margin-top: 40px;
 }
-@media (max-width:785px){
+.form-con{
+    margin: 50px 50px 50px 0;
+}
+@media (max-width:767px){
     .left-border{
         border-left:0px ;
+        display: none;
+    }
+    .form-con{
+        margin: 40px auto auto 0 !important;
     }
 }
-

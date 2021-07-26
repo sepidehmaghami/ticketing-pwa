@@ -13,38 +13,7 @@ const { Content } = Layout;
   const onFinish = (values) => {
     console.log('Received values of form: ', values);
     console.log(values)
-    let formdata = new FormData();
-    formdata.append("is_superuser", "true");
-    formdata.append("username", "parham");
-    formdata.append("first_name", values.name);
-    formdata.append("last_name", values.LastName);
-    //not have phone use email for tell
-    formdata.append("email", values.PhoneNumber);
-    formdata.append("is_staff", "true");
-    formdata.append("is_active", "true");
-    formdata.append("team", "");
-    formdata.append("password", "12345");
-
-    fetch("http://api.ticket.tempserver.ir/api/users/",{
-      method:"POST",
-      body:formdata,
-      headers:new Headers({
-        'WWW-Authenticate': 'Basic',
-        'Content-Type': 'multipart/json',
-        'AUTHORIZATION': 'XXXXXXX'
-    }),
-        mode: 'no-cors',
-        credentials: 'include',  
-      }
-    )
-    .then((res)=>{   
-      console.log(res)
-      // localStorage.setItem("auth","true")
-      // localStorage.setItem("token",res.data.token)
-      // localStorage.setItem("username",res.data.username)
-    }).catch((err)=>{
-      console.log(err.message)
-    })
+    
 };
 function useAuth() {
   // return useContext(authContext);

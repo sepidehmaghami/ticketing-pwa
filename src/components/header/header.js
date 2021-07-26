@@ -10,22 +10,25 @@ import {useState} from 'react';
 import {useHistory} from 'react-router-dom';
 import {  Popconfirm } from 'antd';
 
-function handleMenuClick(e) {
-  message.info('Click on menu item.');
-  console.log('click', e);
+function Profile(){
+  message.success("profile");
+  window.location = '/profile';
 }
 function logOut(){
   message.success("Log out");
-  window.location = './login';
+  localStorage.removeItem("token")
+  localStorage.removeItem("username")
+  localStorage.removeItem("auth")
+  window.location = '/login';
 }
 function cancel(){
-  message.error("cancel");
+  message.error("Log out canceled");
 }
 const { Header } = Layout;
 const menu = (
-  <Menu onClick={handleMenuClick}>
+  <Menu>
     <Menu.Item key="1" >
-    <a href={'./profile'}>Profile</a>
+    <a href={"./profile"} onClick={Profile}>Profile</a>
       {/* Profile */}
     </Menu.Item>
     <Menu.Item key="2" >
@@ -39,11 +42,15 @@ const menu = (
     </Menu.Item>
   </Menu>
 );
-function Head (){
+function Head (props){
   const history = useHistory();
   const routeChange = () =>{ 
-    let path = `./guide`; 
-    history.push(path);
+    message.success('Guide page');
+    history.push("/guide");
+  }
+  const dashboard = () =>{ 
+    message.success('Home page');
+    history.push("/dashboard");
   }
   const [newTicket,setNewTicket] = useState(false)
   const username=localStorage.getItem("username")
@@ -53,21 +60,22 @@ function Head (){
     <Header>
       <Row wrap={false} className="display">
       <Col flex="none">
-        <div><img src={image} width="30px" height="40px" alt="" /></div>
+        <div><img src={image} width="40px" height="40px" alt="logo" onClick={dashboard}/></div>
       </Col>
       <Col > <div className="icons-list">
-       <PlusSquareOutlined style={{ padding: '0 8px' }} onClick={()=>{setNewTicket(true)}}/>
-       <QuestionCircleOutlined style={{ padding: '0 7px' }} onClick={routeChange}/> 
-       <span style={{ fontSize:'13px', padding:'0px 0px 0px 7px' }}>{username}</span>
-       <Dropdown overlay={menu} placement="bottomCenter" >
-       <UserOutlined style={{ padding: '0 2px' }}/> 
+       <PlusSquareOutlined style={{ padding: '0 14px' }} onClick={()=>{setNewTicket(true)}}/>
+       <QuestionCircleOutlined style={{ padding: '0 13px' }} onClick={routeChange}/> 
+       <Dropdown overlay={menu} placement="bottomRight" >
+       <span className="username-style">{username}
+       <UserOutlined style={{ fontSize:'20px', padding: '0px 0px 0px 12px' }}/> 
+       </span>
       </Dropdown>
        </div>
        </Col>
     </Row>
     </Header>
   </Layout>
-  <AddTicket open={newTicket} hidefunc={()=>{setNewTicket(false)}}/>
+  <AddTicket changeTicket={()=>{props.changeTicket()}} open={newTicket} hidefunc={()=>{setNewTicket(false)}}/>
      </>
   );
 }

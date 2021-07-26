@@ -1,68 +1,88 @@
 import Head from '../header/header';
-import './home.css';
+import './dashboard.css';
 import { Layout ,Breadcrumb } from 'antd';
 import { Table ,Tag  } from 'antd';
 import { Row, Col } from 'antd';
-import { Pagination } from 'antd';
-// import MenuList from './menu';
+import { Pagination , message } from 'antd';
 import { Input, Space } from 'antd';
-import { AudioOutlined } from '@ant-design/icons';
 import {useState,useEffect} from "react"
 import OpenTicket from "../open ticket/open-ticket"
 import {Helmet} from "react-helmet";
+import {useHistory ,useLocation} from "react-router-dom"
+import axios from 'axios';
+import debounce from 'lodash/debounce'
 
 const {  Header,Content } = Layout;
 const { Search } = Input;
 
-  
-
-const suffix = (
-    <AudioOutlined
-      style={{
-        fontSize: 16,
-        color: '#1890ff',
-      }}
-    />
-  );
-
-
- 
-
-function Home() {
+function Home(props){
   const [data1,setdata1]=useState([])
   const [chnage,setchange]=useState(true)
+  const [seeOpenTicket,setseeOpenTicket]=useState(true)
   const [openTicket,setOpenTicket] = useState(false)
-  const [idTiketOpen,setidTiketOpen] = useState()
+  const [openTicketTime,setOpenTicketTime] = useState(false)
+  const [idTiketOpen,setidTiketOpen] = useState({name:"",subject:""})
+  const [commentTicket,setcommentTicket] = useState()
   const [curentData,setcurentData] = useState()
   const [url,seturl] = useState("https://api.ticket.tempserver.ir/api/ticket/")
   var token= localStorage.getItem("token")
-
   const deletTicket = id =>{
-    fetch("https://api.ticket.tempserver.ir/api/close/"+id+"/",{
-      method:"GET",
-      headers:new Headers({
+    axios.get("https://api.ticket.tempserver.ir/api/close/"+id+"/",{
+      headers:{
         'content-type': 'application/json',
         "AUTHORIZATION" : "Bearer "+ token
-      })
-    }).then(res=>res.json())
+      }
+    })
+    .then(res=>res.data)
     .then(result=>{
       if(result.message === "OK"){
-        console.log(id +" id closed ticket ")
+        message.success("Ticket "+ id+" deleted");
+        setchange((prev)=>!prev)
       }else{
         console.log(result)
+        message.error("somthing wrong");
       }
     })
     .catch(err=>
       console.log(err.message)
     )
+    
   }
-  
-  const openTicketfunc=(id)=>{
-    const find =data1.find((val)=>id===val.key)
-    setidTiketOpen({id:id,created:find.created,subject:find.subject})
-    setOpenTicket(true)
-  }
-
+  const history=useHistory()    
+    const openTicketfunc=(id)=>{
+      axios.get("https://api.ticket.tempserver.ir/api/ticket/?limit=10000&offset=0",{
+        headers:{
+          'content-type': 'application/json',
+          "AUTHORIZATION" : "Bearer "+token
+        }
+      })
+      .then(res=>res.data)
+      .then(result=>{
+        return result.results
+      })
+      .then(result=>{
+        const resul=[...result]
+        const find =resul.find((val)=>Number(id)===val.id)
+        return find
+      }).then( (find)=>{
+        message.success("Ticket open");
+        history.push("/dashboard/"+id)
+         setidTiketOpen({
+          key: find.id,
+          status: [find.tag],
+          subject:find.subject,
+          created:find.created_at,
+          created2:(+ new Date(find.created_at)),
+          requester:find.user.username,
+        })
+         setcommentTicket(find.comments)  
+         setOpenTicket(true)
+         setOpenTicketTime(true)    
+        })
+      .catch((err)=>{
+        console.log(err.message)
+      })
+    }
   const columns = [
     {
       title: 'Status',
@@ -112,6 +132,7 @@ function Home() {
     {
       title: '#',
       dataIndex: 'number',
+      sorter: (a, b) => a.number - b.number,
     },
     {
         title: 'Subject',
@@ -120,6 +141,8 @@ function Home() {
       {
         title: 'Created',
         dataIndex: 'created',
+        sorter: (a, b) => a.created2 - b.created2,
+
       },
   
       {
@@ -149,21 +172,17 @@ function Home() {
       },
   ];
   
-
-  
   var arr=[]
   useEffect(()=>{
-    fetch(url,{
-      method:"GET",
-      headers:new Headers({
+    axios.get(url,{
+      headers:{
         'content-type': 'application/json',
         "AUTHORIZATION" : "Bearer "+token
-      })
+      }
     })
-    .then(res=>res.json())
+    .then(res=>res.data)
     .then(result=>{
       setcurentData(result.count)      
-
       return result.results
     })
     .then(result=>{
@@ -176,6 +195,7 @@ function Home() {
             number: arr.length+1,
             subject:val.subject,
             created:val.created_at,
+            created2:(+ new Date(val.created_at)),
             requester:val.user.username,
             customer:"Main",
             updated:val.updated_at,
@@ -193,15 +213,42 @@ function Home() {
 
   },[chnage])
 
-  const onSearch = value =>{
+  let openTicketElem=openTicketTime?(
+  <OpenTicket 
+    deletTicket={deletTicket} 
+    data={idTiketOpen}
+    comments={commentTicket}
+    open={openTicket} 
+    changeComment={()=>{
+        openTicketfunc(idTiketOpen.key)
+    }}
+    hidefunc={()=>{
+      setOpenTicket(false)
+      setTimeout(()=>{
+        setOpenTicketTime(false)
+      },1000)
+      }}/>):""
+  const location=useLocation().pathname.split("/")[2]
+  if(seeOpenTicket){
+    if(location!=="" && location!==null && location!==undefined){
+      if(data1[0]!==undefined ){
+        setseeOpenTicket(false)
+        openTicketfunc(location)
+      }
+    }
+  }
+   
+
+    
+  const onSearch =debounce(value =>{
     if(value.target.value.trim() !==""){
-      fetch("https://api.ticket.tempserver.ir/api/ticket/?search="+value.target.value,{
-        method:"GET",
-        headers:new Headers({
+      axios.get("https://api.ticket.tempserver.ir/api/ticket/?search="+value.target.value,{
+        headers:{
           'content-type': 'application/json',
           "AUTHORIZATION" : "Bearer "+token
-        })
-      }).then(res=>res.json())
+        }
+      })
+      .then(res=>res.data)
       .then(result=>{
         return result.results
       })
@@ -215,6 +262,7 @@ function Home() {
             number: arr.length+1,
             subject:val.subject,
             created:val.created_at,
+            created2:(+ new Date(val.created_at)),
             requester:val.user.username,
             customer:"Main",
             updated:val.updated_at,
@@ -232,13 +280,15 @@ function Home() {
   }else if(value.target.value.trim() ===""){
     setchange((prev)=>!prev)
   }
-}
+},1000)
 
   const changePage=(curent)=>{
     let ofset =(curent-1)*10
     seturl("https://api.ticket.tempserver.ir/api/ticket/?limit=10&offset="+ofset)
     setchange(prev=>!prev)
   }
+  
+      
   return (
     <>
     <Helmet>
@@ -247,7 +297,7 @@ function Home() {
     <Layout className="layout">   
 
     <Header>
-    <Head/>
+    <Head changeTicket={()=>{setchange(prev=>!prev)}}/>
     </Header>
 
     <Content style={{ padding: '0 100px' }}>
@@ -270,11 +320,7 @@ function Home() {
           <Table  columns={columns} dataSource={data1} scroll={{ x: 'calc(650px + 50%)' }}/>
       </div>
     </Content>
-    {
-
-    }
-    {openTicket?<OpenTicket title={idTiketOpen.subject} date={idTiketOpen.created}  id={idTiketOpen.id} open={openTicket} hidefunc={()=>{setOpenTicket(false)}}/>:""}
-
+      {openTicketElem}
     </Layout>
     </>
     );

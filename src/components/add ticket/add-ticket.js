@@ -2,13 +2,15 @@ import { Modal, Button } from 'antd';
 import React, { useState } from 'react';
 import { Input } from 'antd';
 import { Radio } from 'antd';
+import { message } from 'antd';
 
 import './add-ticket.css';
 
 import {useRef} from 'react';
 import JoditEditor from "jodit-react";
+import axios from 'axios';
 
-function AddTicket(props) {
+function AddTicket(props){
     const [value1, setValue1] = React.useState("normal");
     const [value2, setValue2] = React.useState(1);
     const [value3, setValue3] = React.useState("");
@@ -24,6 +26,8 @@ function AddTicket(props) {
     
     function Modalhidefunc ()  {
         props.hidefunc();
+        message.error('Ticket canceled');
+
       };
     function AddTicket(e){
       e.preventDefault()
@@ -36,16 +40,23 @@ function AddTicket(props) {
         file01: "",
         file02:"",
       }
-      fetch("https://api.ticket.tempserver.ir/api/ticket/",{
-        method:"POST",
-        body:JSON.stringify({
-          ...dataset
-        }),
-        headers:new Headers({
-          'content-type': 'application/json',
-          "AUTHORIZATION" : "Bearer "+token
-        })
-      }).then(res=>res.json())
+      axios.post("https://api.ticket.tempserver.ir/api/ticket/",{
+        ...dataset
+      },{
+        headers:{
+        'content-type': 'application/json',
+        "AUTHORIZATION" : "Bearer "+token
+      }})
+      .then(res=>{
+        if(res.status===201 || res.status===200){
+          message.success('Tickets added');
+          props.changeTicket()
+          return  res.data
+        }else{
+          message.error('something wrong');
+          return res
+        }
+      })
       .then(result=>{
         console.log(result)
       }).catch((err)=>{

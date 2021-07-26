@@ -165,7 +165,7 @@
         margin-right: 1.5%;
     }
 }
-@media screen and (max-width:500px) {
+@media screen and (max-width:767px) {
     .ant-col-12 {
         flex: 0 0 100% !important; 
         max-width: 100% !important;
@@ -191,6 +191,10 @@
      }
      .para span { 
         padding: 10px; 
+     }
+     .para{
+        position: relative !important;
+        padding: 0px 17px;
      }
 }
 
