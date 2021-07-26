@@ -10,40 +10,13 @@ import {useState} from 'react';
 import {useHistory} from 'react-router-dom';
 import {  Popconfirm } from 'antd';
 
-function Profile(){
-  message.success("profile");
-  window.location = '/profile';
-}
-function logOut(){
-  message.success("Log out");
-  localStorage.removeItem("token")
-  localStorage.removeItem("username")
-  localStorage.removeItem("auth")
-  window.location = '/login';
-}
-function cancel(){
-  message.error("Log out canceled");
-}
 const { Header } = Layout;
-const menu = (
-  <Menu>
-    <Menu.Item key="1" >
-    <a href={"./profile"} onClick={Profile}>Profile</a>
-      {/* Profile */}
-    </Menu.Item>
-    <Menu.Item key="2" >
-    <Popconfirm
-          title="Sure to logout?"
-          onConfirm={ logOut}
-          onCancel={cancel}
-        >
-    <a href={'./login'}>Log out</a>
-        </Popconfirm>
-    </Menu.Item>
-  </Menu>
-);
+
 function Head (props){
   const history = useHistory();
+  const [newTicket,setNewTicket] = useState(false)
+  const username=localStorage.getItem("username")
+
   const routeChange = () =>{ 
     message.success('Guide page');
     history.push("/guide");
@@ -52,8 +25,38 @@ function Head (props){
     message.success('Home page');
     history.push("/dashboard");
   }
-  const [newTicket,setNewTicket] = useState(false)
-  const username=localStorage.getItem("username")
+  const Profile=()=>{
+    message.success("profile");
+    history.push("/profile");
+  }
+  const logOut=()=>{
+    message.success("Log out");
+    localStorage.removeItem("token")
+    localStorage.removeItem("username")
+    localStorage.removeItem("auth")
+    history.push("/login");
+
+  }
+  const cancel=()=>{
+    message.error("Log out canceled");
+  }
+  const menu = (
+    <Menu>
+      <Menu.Item key="1" >
+      <a href={"./profile"} onClick={Profile}>Profile</a>
+        {/* Profile */}
+      </Menu.Item>
+      <Menu.Item key="2" >
+      <Popconfirm
+            title="Sure to logout?"
+            onConfirm={ logOut}
+            onCancel={cancel}
+          >
+      <a href={'./login'}>Log out</a>
+          </Popconfirm>
+      </Menu.Item>
+    </Menu>
+  );
   return(
     <>
   <Layout className="layout">

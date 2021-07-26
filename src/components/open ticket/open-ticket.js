@@ -56,6 +56,10 @@ function OpenTicket(props) {
   },[Load])
  
   const submited=(id)=>{
+    if(content.trim()===""){
+      message.error("plase type somthing")
+      return false
+    }
     setSpiner(true)
     axios.post("https://api.ticket.tempserver.ir/api/comment/",{
       body:content,
@@ -69,11 +73,17 @@ function OpenTicket(props) {
       }
     })
     .then(res=>{
-      setContent("")
-      props.changeComment()
-      setLoad(true)
-      setSpiner(false)
-      message.success("Tickets sent");
+      console.log(res)
+      if(res.status===200||res.status===201){
+        setContent("")
+        props.changeComment()
+        setLoad(true)
+        setSpiner(false)
+        message.success("Tickets sent");
+      }else{
+        message.error("somthing Wrong")
+      }
+      
     })
     .catch(err=>{
       setSpiner(false)
@@ -104,15 +114,18 @@ function OpenTicket(props) {
     elem =<Spin />
 
   }
+  console.log(props.comments)
     return (
         <>
         <Drawer
         title={[
-         <p className="p-align"><ArrowLeftOutlined className="icon-back" onClick={onClose}/>{props.data.subject}</p>,
-            <span><span class="ant-tag ant-tag-green">{props.data.status[0].toUpperCase()}</span></span>,
-            <span className="font-span">- Created {props.data.created} - Requester: {props.data.requester}<span className="color-name"></span></span>
-        ]}          width={720} 
-            onClose={onClose}
+         <p className="p-align"><ArrowLeftOutlined className="icon-back" onClick={onClose}/><span className="ticket-id">ticket {props.data.key}</span></p>,
+         <span><span class="openTicket__subject">{props.data.subject}</span></span>,
+         <span><span class="ant-tag ant-tag-green">{props.data.status[0].toUpperCase()}</span></span>,
+         <span className="font-span">- Created {props.data.created} - Requester: {props.data.requester}<span className="color-name"></span></span>
+        ]}          
+          width={720} 
+          onClose={onClose}
           visible={props.open}
           bodyStyle={{ paddingBottom: 80 }}
           footer={

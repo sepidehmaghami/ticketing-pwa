@@ -1,6 +1,6 @@
 import './profile-style.css';
 import Head from '../header/header';
-import { Layout ,Breadcrumb } from 'antd';
+import { Layout ,Breadcrumb,message } from 'antd';
 import { Row, Col } from 'antd';
 import { Input } from 'antd';
 import { UserOutlined,LockOutlined,MailOutlined} from '@ant-design/icons';
@@ -55,7 +55,13 @@ function Profile ()  {
           "AUTHORIZATION" : "Bearer "+ token
         }
        })
-      .then((res)=>(res.data)).then((res)=>{
+      .then((res)=>{
+        if(res.status===200){
+          return res.data
+        }else{
+          message.error("something wrong to fetch data user")
+        }
+      }).then((res)=>{
         return res.results
       }).then((result)=>{
         const user=result.find((arr)=>{

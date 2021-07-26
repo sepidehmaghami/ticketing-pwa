@@ -31,6 +31,14 @@ function AddTicket(props){
       };
     function AddTicket(e){
       e.preventDefault()
+      if(content.trim()===""){
+        message.error("plase fill the subject")
+        return false
+      }
+      if(value3.trim()===""){
+        message.error("plase fill the message")
+        return false
+      }
       const token=localStorage.getItem("token")
       const dataset={
         subject:value3,

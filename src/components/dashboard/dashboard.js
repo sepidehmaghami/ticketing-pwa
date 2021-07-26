@@ -53,10 +53,16 @@ function Home(props){
       axios.get("https://api.ticket.tempserver.ir/api/ticket/?limit=10000&offset=0",{
         headers:{
           'content-type': 'application/json',
-          "AUTHORIZATION" : "Bearer "+token
+          "AUTHORIZATION": "Bearer "+token
         }
       })
-      .then(res=>res.data)
+      .then(res=>{
+        if(res.status===200){
+          return res.data
+        }else{
+          message.error("try agin")
+        }
+      })
       .then(result=>{
         return result.results
       })
@@ -75,7 +81,7 @@ function Home(props){
           created2:(+ new Date(find.created_at)),
           requester:find.user.username,
         })
-         setcommentTicket(find.comments)  
+         setcommentTicket(find.comments)
          setOpenTicket(true)
          setOpenTicketTime(true)    
         })
@@ -180,7 +186,13 @@ function Home(props){
         "AUTHORIZATION" : "Bearer "+token
       }
     })
-    .then(res=>res.data)
+    .then(res=>{
+      if(res.status===200){
+        return res.data
+      }else{
+        message.error("try agin")
+      }
+    })
     .then(result=>{
       setcurentData(result.count)      
       return result.results
@@ -248,7 +260,13 @@ function Home(props){
           "AUTHORIZATION" : "Bearer "+token
         }
       })
-      .then(res=>res.data)
+      .then(res=>{
+        if(res.status===200){
+          return res.data
+        }else{
+          message.error("try agin")
+        }
+      })
       .then(result=>{
         return result.results
       })

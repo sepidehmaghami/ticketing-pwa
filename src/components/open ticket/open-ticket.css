@@ -61,6 +61,16 @@
     flex-direction: column;
     justify-content: space-between;
 }
+.ticket-id{
+    color: #999;
+    font-size: 14px;
+}
+.openTicket__subject{
+    display: block;
+    font-weight: 600;
+    font-size: 15px;
+    margin-bottom: 10px;
+}
 @media screen and (max-width:767px) {
     .ant-drawer-content-wrapper{
         width: 100% !important;

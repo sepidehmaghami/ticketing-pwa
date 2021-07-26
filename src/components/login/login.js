@@ -63,8 +63,8 @@ function Login ()  {
       </Helmet>
     
     {redirected}
-   <Layout>
-    <Content>
+   <Layout >
+    <Content className="login__layout">
     <Row>
         <Col className="item_center" span={12}>  
             <div><img src={imagelogin} className="imglogo "  alt="" /></div>
@@ -132,7 +132,7 @@ function Login ()  {
             </div>
     </Form>
               </Col>
-        <Col  span={12}>   
+        <Col className="login__right-image" span={12}>   
             <div>
               <img src={imgLogin} className="grayscale loginImag" width="100%" height="721vh" alt="" />
               <p className="para"><span>Lorem ipsum dolor sit amet, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Egestas purus viverra accumsan in nisl nisi. Arcu cursus vitae congue mauris rhoncus aenean vel elit scelerisque. In egestas erat imperdiet sed euismod nisi porta lorem mollis. </span></p>

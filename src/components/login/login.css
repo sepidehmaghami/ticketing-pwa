@@ -80,7 +80,15 @@
 .botoom-border{
     text-align-last: center;
 }
-
+.login__right-image{
+    min-height: 100vh  !important;
+}
+.login__right-image >div{
+    height: 100%;
+}
+.login__right-image img{
+    height: 100%;
+}
 @media screen and (max-width:930px) {
     .ant-input-size  {
         width: 350px !important;
@@ -173,6 +181,15 @@
      }
      .para span { 
         padding: 10px; 
+     }
+     .ant-layout-content.login__layout{
+         padding: 0!important;
+     }
+     .login__right-image{
+         position: unset !important;
+         height: 0;
+        min-height: 0!important;
+        max-height: 0;
      }
 }
 
