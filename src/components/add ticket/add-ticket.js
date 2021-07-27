@@ -27,16 +27,16 @@ function AddTicket(props){
     function Modalhidefunc ()  {
         props.hidefunc();
         message.error('Ticket canceled');
-
       };
+
     function AddTicket(e){
       e.preventDefault()
       if(content.trim()===""){
-        message.error("plase fill the subject")
+        message.error("Please fill in the subject field")
         return false
       }
       if(value3.trim()===""){
-        message.error("plase fill the message")
+        message.error("Please fill in the message field")
         return false
       }
       const token=localStorage.getItem("token")
@@ -56,6 +56,8 @@ function AddTicket(props){
         "AUTHORIZATION" : "Bearer "+token
       }})
       .then(res=>{
+        setContent("")
+        setValue3("")
         if(res.status===201 || res.status===200){
           message.success('Tickets added');
           props.changeTicket()
@@ -64,6 +66,7 @@ function AddTicket(props){
           message.error('something wrong');
           return res
         }
+        
       })
       .then(result=>{
         console.log(result)
@@ -96,14 +99,6 @@ function AddTicket(props){
             </Button>,
           ]}
         >
-    
-      <div className="b-border">
-        <span className="m-r">Type </span>
-        <Radio.Group onChange={onChange2} value={value2}>
-          <Radio value={1}>Issue</Radio>
-          <Radio value={2}>Task</Radio>
-        </Radio.Group>
-      </div>
     <br />
       <div className="b-border">
         <span className="m-r">Priority </span>

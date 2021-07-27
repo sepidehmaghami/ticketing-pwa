@@ -4,7 +4,7 @@ import { Layout ,Breadcrumb } from 'antd';
 import { Table ,Tag  } from 'antd';
 import { Row, Col } from 'antd';
 import { Pagination , message } from 'antd';
-import { Input, Space } from 'antd';
+import { Input, Space ,Popconfirm} from 'antd';
 import {useState,useEffect} from "react"
 import OpenTicket from "../open ticket/open-ticket"
 import {Helmet} from "react-helmet";
@@ -71,7 +71,6 @@ function Home(props){
         const find =resul.find((val)=>Number(id)===val.id)
         return find
       }).then( (find)=>{
-        message.success("Ticket open");
         history.push("/dashboard/"+id)
          setidTiketOpen({
           key: find.id,
@@ -97,6 +96,9 @@ function Home(props){
         <span>
           {status.map(tag => {
             let color = 'green';
+            if(tag==="done"){
+              color="red"
+            }
             return (
               <Tag color={color} key={tag}>
                 {tag.toUpperCase()}
@@ -165,13 +167,17 @@ function Home(props){
         dataIndex: 'updated',
             sorter: (a, b) => a.updated2 - b.updated2,
       },
-    
     {
         title: 'Action',
         dataIndex: 'action',
         render: (id, record) => (
             <Space size="middle" style={{color:"#3699FF"}}>
-              <a onClick={()=>{deletTicket(record.key)} } >Delete {record.name}</a>
+            <Popconfirm
+            title="Do you want to delete this ticket?"
+            onConfirm={ ()=>{deletTicket(record.key)}}
+            >
+              <a>Delete {record.name}</a>
+          </Popconfirm>
               <a onClick={()=>{openTicketfunc(record.key)} } >Open</a>
             </Space>
           ),
@@ -200,18 +206,20 @@ function Home(props){
     .then(result=>{
       arr=[]
       const resul=[...result]
+      console.log(resul[0].created_at.split(".")[0])
+
       resul.map((val)=>{
           arr.push({
             key: val.id,
             status: [val.tag],
             number: arr.length+1,
             subject:val.subject,
-            created:val.created_at,
-            created2:(+ new Date(val.created_at)),
+            created:val.created_at.split(".")[0],
+            created2: val.created_at.split(".")[0],
             requester:val.user.username,
             customer:"Main",
-            updated:val.updated_at,
-            updated2:(+ new Date(val.updated_at)),
+            updated:val.updated_at.split(".")[0],
+            updated2:val.updated_at.split(".")[0],
           })
       })
       return result
@@ -310,7 +318,7 @@ function Home(props){
   return (
     <>
     <Helmet>
-          <title>Ticketing - Home Page</title>
+          <title>Ticketing - Dashboard</title>
       </Helmet>
     <Layout className="layout">   
 

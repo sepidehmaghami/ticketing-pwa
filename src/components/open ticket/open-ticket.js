@@ -20,7 +20,7 @@ const ExampleComment1 = (props) =>{
       className={notuser}
       actions={[<span key="comment-nested-reply-to" onClick={props.reply}>Reply to</span>]}
       author={<div>{props.name} <span>{props.email}</span></div>}
-      datetime={<div className="mt-1">{props.date}</div>}
+      datetime={<div className="mt-1">{props.date.split(".")[0]}</div>}
       avatar={
         <Avatar className="b-color"
           alt="sepideh">{props.name.split("")[0]}</Avatar>
@@ -43,7 +43,6 @@ function OpenTicket(props) {
   const [spiner, setSpiner] = useState(false);
   
   function onClose (){
-    message.error("The ticket was canceled");
       props.hidefunc()
   }; 
 
@@ -54,7 +53,9 @@ function OpenTicket(props) {
     setComment(props.comments)
     setLoad(true)
   },[Load])
- 
+ useEffect(()=>{
+  message.success("Ticket open");
+ },[])
   const submited=(id)=>{
     if(content.trim()===""){
       message.error("plase type somthing")
@@ -108,33 +109,36 @@ function OpenTicket(props) {
     }else{
     commented=""
   }
-  let elem,attr
+  let elem,attr,classStatus
   if(spiner){
     attr={disabled:true}
     elem =<Spin />
 
   }
-  console.log(props.comments)
+  classStatus="ant-tag-green"
+  if(props.data.status[0]==="done"){
+    classStatus="ant-tag-red"
+  }
     return (
         <>
         <Drawer
         title={[
          <p className="p-align"><ArrowLeftOutlined className="icon-back" onClick={onClose}/><span className="ticket-id">ticket {props.data.key}</span></p>,
-         <span><span class="openTicket__subject">{props.data.subject}</span></span>,
-         <span><span class="ant-tag ant-tag-green">{props.data.status[0].toUpperCase()}</span></span>,
-         <span className="font-span">- Created {props.data.created} - Requester: {props.data.requester}<span className="color-name"></span></span>
+         <span><span className="openTicket__subject">{props.data.subject}</span></span>,
+         <span><span className={"ant-tag "+classStatus}>{props.data.status[0].toUpperCase()}</span></span>,
+         <span className="font-span">- Created {props.data.created.split(".")[0]} - Requester: {props.data.requester}<span className="color-name"></span></span>
         ]}          
           width={720} 
           onClose={onClose}
           visible={props.open}
-          bodyStyle={{ paddingBottom: 80 }}
+          bodyStyle={{ paddingBottom: 30 }}
           footer={
             <div
               style={{
                 textAlign: 'right',
               }}
             >
-                 <p className="align-text">Add Comment </p>
+            <p className="align-text">Add Comment </p>
       <JoditEditor
               ref={editor}
               value={content}

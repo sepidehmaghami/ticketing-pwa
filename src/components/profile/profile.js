@@ -21,10 +21,10 @@ function Profile ()  {
       e.preventDefault()      
       const senddata ={
         is_superuser:true,
+        email: formdata.email,
         username:formdata.name,
         first_name:formdata.name,
         last_name:formdata.lastname,
-        email: formdata.email,
         is_staff:true,
         is_active:true,
         teams:"",
@@ -43,7 +43,7 @@ function Profile ()  {
       }).then((result)=>{
         console.log(result)
         alert(JSON.stringify(result))
-        setformdata({name: "", lastname: "", pass: "", confimpass: "", email: ""})
+        setformdata({email: "", name: "", lastname: "", pass: "", confimpass: ""})
       }).catch((err)=>{
         console.log(err.message)
       })
@@ -103,6 +103,11 @@ function Profile ()  {
                     <Col flex={4} className="form-con" style={{margin:"50px" , marginBottom:"0px"}}>
                     <form onSubmit={(e)=>{submitHandler(e)}}>
                     <h2>User Information</h2>
+                    <Input value={formdata.email} onChange={(e)=>{setformdata((prev)=>{
+                      return {...prev,email:e.target.value}
+                    })}} size="large" placeholder="Email" className="ant-icon" prefix={<MailOutlined />} />
+                    <br />
+                    <br />
                     <Input size="large" value={formdata.name} onChange={(e)=>{setformdata((prev)=>{
                       return {...prev,name:e.target.value}
                     })}} placeholder="Name" className="ant-icon" prefix={<UserOutlined />} />
@@ -122,11 +127,6 @@ function Profile ()  {
                       setformdata((prev)=>{
                       return {...prev,confimpass:e.target.value}
                     })}} size="large" placeholder="Confirm Password" className="ant-icon" prefix={<LockOutlined />} />
-                    <br />
-                    <br />
-                    <Input value={formdata.email} onChange={(e)=>{setformdata((prev)=>{
-                      return {...prev,email:e.target.value}
-                    })}} size="large" placeholder="Email" className="ant-icon" prefix={<MailOutlined />} />
                     <br />
                     <br />
                    <div className="btn-position">
