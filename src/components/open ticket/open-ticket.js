@@ -1,4 +1,4 @@
-import { Drawer, Button,  Select,Spin } from 'antd';
+import { Drawer, Button,Spin } from 'antd';
 import React, { useState,useEffect,memo } from 'react';
 import './open-ticket.css';
 import { Comment, Avatar , message } from 'antd';
@@ -6,8 +6,7 @@ import {useRef} from 'react';
 import JoditEditor from "jodit-react";
 import { ArrowLeftOutlined } from '@ant-design/icons';
 import axios from 'axios';
-
-const { Option } = Select;
+import Gravatar from 'react-gravatar';
 
 const ExampleComment1 = (props) =>{
   let usernameSet=localStorage.getItem("username")
@@ -23,7 +22,11 @@ const ExampleComment1 = (props) =>{
       datetime={<div className="mt-1">{props.date.split(".")[0]}</div>}
       avatar={
         <Avatar className="b-color"
-          alt="sepideh">{props.name.split("")[0]}</Avatar>
+          alt="sepideh">
+            <Gravatar 
+                        email={props.email} 
+                        className="CustomAvatar-image"/>
+            </Avatar>
       }
       content={
         <pre dangerouslySetInnerHTML={{ __html: props.message }}></pre>
@@ -44,7 +47,7 @@ function OpenTicket(props) {
   
   function onClose (){
       props.hidefunc()
-  }; 
+  }
 
   const config = {
     readonly: false // all options from https://xdsoft.net/jodit/doc/
@@ -56,7 +59,7 @@ function OpenTicket(props) {
  useEffect(()=>{
   message.success("Ticket open");
  },[])
-  const submited=(id)=>{
+  const submited=()=>{
     if(content.trim()===""){
       message.error("plase type somthing")
       return false
@@ -109,24 +112,46 @@ function OpenTicket(props) {
     }else{
     commented=""
   }
-  let elem,attr,classStatus
+  let elem,attr,classStatus,elemTicketrm
   if(spiner){
     attr={disabled:true}
     elem =<Spin />
-
   }
   classStatus="ant-tag-green"
+  elemTicketrm=(<><p className="align-text">Add Comment </p>
+  <JoditEditor
+          direction={"ltr"}
+          ref={editor}
+          value={content}
+          config={config}
+          tabIndex={1} // tabIndex  of textarea
+          onBlur={newContent => setContent(newContent)} // preferred to use only this option to update the content for performance reasons
+        />
+        <br/>
+        <Button onClick={deletingTicket}  className="btn-drwer btn-cancel ">
+            Close
+        </Button>
+        <Button onClick={onClose} style={{ marginRight: 8 }} className="btn-cancel btn-drwer">
+          Cancel
+        </Button>
+        <Button {...attr} onClick={submited} className="btn-drwer">
+          Send
+          {elem}
+        </Button></>)
   if(props.data.status[0]==="done"){
     classStatus="ant-tag-red"
+    elemTicketrm=""
   }
     return (
         <>
         <Drawer
         title={[
-         <p className="p-align"><ArrowLeftOutlined className="icon-back" onClick={onClose}/><span className="ticket-id">ticket {props.data.key}</span></p>,
-         <span><span className="openTicket__subject">{props.data.subject}</span></span>,
-         <span><span className={"ant-tag "+classStatus}>{props.data.status[0].toUpperCase()}</span></span>,
-         <span className="font-span">- Created {props.data.created.split(".")[0]} - Requester: {props.data.requester}<span className="color-name"></span></span>
+          <div key="2">
+            <p className="p-align"><ArrowLeftOutlined className="icon-back" onClick={onClose}/><span className="ticket-id">ticket {props.data.key}</span></p>
+          <span><span className="openTicket__subject">{props.data.subject}</span></span>
+          <span><span className={"ant-tag "+classStatus}>{props.data.status[0].toUpperCase()}</span></span>
+          <span className="font-span">- Created {props.data.created.split(".")[0]} - Requester: {props.data.requester}<span className="color-name"></span></span>
+          </div>
         ]}          
           width={720} 
           onClose={onClose}
@@ -138,29 +163,9 @@ function OpenTicket(props) {
                 textAlign: 'right',
               }}
             >
-            <p className="align-text">Add Comment </p>
-      <JoditEditor
-              ref={editor}
-              value={content}
-              config={config}
-              tabIndex={1} // tabIndex  of textarea
-              onBlur={newContent => setContent(newContent)} // preferred to use only this option to update the content for performance reasons
-              onChange={newContent => {}}
-            />
-            <br/>
-            <Button onClick={deletingTicket}  className="btn-drwer btn-cancel ">
-                Close
-              </Button>
-              <Button onClick={onClose} style={{ marginRight: 8 }} className="btn-cancel btn-drwer">
-                Cancel
-              </Button>
-              <Button {...attr} onClick={submited} className="btn-drwer">
-                Send
-                {elem}
-              </Button>
+            {elemTicketrm}
             </div>
-          }
-        >
+          }>
         {commented}
         </Drawer>
       </>

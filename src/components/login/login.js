@@ -1,6 +1,6 @@
 import './login.css';
 import React, { useState  } from "react";
-import { Layout } from 'antd';
+import { Layout, message } from 'antd';
 import { Row, Col } from 'antd';
 import imgLogin from '../../assets/login.jpg';
 import imagelogin from '../../assets/logo.svg';
@@ -13,7 +13,6 @@ import axios from "axios"
 const { Content } = Layout;
 function Login ()  {
   const [red,setred] = useState(false)
-  const [messageerr,setmessageerr] = useState("")
   
   const handleFormSubmit = values => {
     const name = values.username,
@@ -26,7 +25,7 @@ function Login ()  {
       if(res.status===200){
         return res.data
       }else if(res.status === 401){
-        setmessageerr("username or password is invalid")
+        message.error("username or password is invalid")
       }
     })
     .then((res)=>{   
@@ -46,13 +45,9 @@ function Login ()  {
       console.log(err.message)
     })
   };
-
-  const onFinish = (values) => {
-    console.log('Received values of form: ', values);
-};
   let redirected;
   if(red){
-    redirected=<Redirect to="/dashboard"/>
+    redirected=<Redirect to="/" />
   }
   
     return (
@@ -78,10 +73,7 @@ function Login ()  {
               }}
               onFinish={handleFormSubmit}
             >
-              <span style={{color: "red",
-                          margin:"10px auto",
-                          display:"inline-block"}
-    }>{messageerr}</span>
+              
             <div className="flex-space">
             <Form.Item className="ant-input-size"
                 name="username"
@@ -125,7 +117,7 @@ function Login ()  {
                     </div>
               </Form.Item>
               <Form.Item  className="botoom-border" >
-                Don't have an account? <a className="a-style" href={'./register'}>Register</a>
+                Don&apos;t have an account? <a className="a-style" href={'./register'}>Register</a>
                 <br />
                 Having an issue? <a className="a-style" href={'./guide'}>Contact us</a>
               </Form.Item>
@@ -143,6 +135,6 @@ function Login ()  {
   </Layout>
  </>     
   );
-};
+}
 
 export default Login;

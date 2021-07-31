@@ -11,11 +11,10 @@ import {Helmet} from "react-helmet";
 import {useHistory ,useLocation} from "react-router-dom"
 import axios from 'axios';
 import debounce from 'lodash/debounce'
-
 const {  Header,Content } = Layout;
 const { Search } = Input;
 
-function Home(props){
+function Home(){
   const [data1,setdata1]=useState([])
   const [chnage,setchange]=useState(true)
   const [seeOpenTicket,setseeOpenTicket]=useState(true)
@@ -71,7 +70,7 @@ function Home(props){
         const find =resul.find((val)=>Number(id)===val.id)
         return find
       }).then( (find)=>{
-        history.push("/dashboard/"+id)
+        history.push("/"+id)
          setidTiketOpen({
           key: find.id,
           status: [find.tag],
@@ -92,6 +91,7 @@ function Home(props){
     {
       title: 'Status',
       dataIndex: 'status',
+      // eslint-disable-next-line react/display-name
       render: status => (
         <span>
           {status.map(tag => {
@@ -156,6 +156,7 @@ function Home(props){
       {
         title: 'Requester',
         dataIndex: 'requester',
+        // eslint-disable-next-line react/display-name
         render: text => <a style={{color:"#3699FF"}}>{text}</a>,
       },
       {
@@ -170,17 +171,22 @@ function Home(props){
     {
         title: 'Action',
         dataIndex: 'action',
-        render: (id, record) => (
+        // eslint-disable-next-line react/display-name
+        render: function(id, record){
+          return (
+            <>
             <Space size="middle" style={{color:"#3699FF"}}>
             <Popconfirm
             title="Do you want to delete this ticket?"
             onConfirm={ ()=>{deletTicket(record.key)}}
             >
               <a>Delete {record.name}</a>
-          </Popconfirm>
+            </Popconfirm>
               <a onClick={()=>{openTicketfunc(record.key)} } >Open</a>
             </Space>
-          ),
+            </>
+            
+          )},
       },
   ];
   
@@ -224,7 +230,7 @@ function Home(props){
       })
       return result
     })
-    .then((res)=>{
+    .then(()=>{
       setdata1(arr)
     })
     .catch((err)=>{
@@ -248,7 +254,7 @@ function Home(props){
         setOpenTicketTime(false)
       },1000)
       }}/>):""
-  const location=useLocation().pathname.split("/")[2]
+  const location=useLocation().pathname.split("/")[1]
   if(seeOpenTicket){
     if(location!=="" && location!==null && location!==undefined){
       if(data1[0]!==undefined ){
@@ -297,7 +303,7 @@ function Home(props){
         })
         return result
       })
-      .then((res)=>{
+      .then(()=>{
         setdata1(arr)
       })
       .catch((err)=>{

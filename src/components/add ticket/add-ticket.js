@@ -12,14 +12,14 @@ import axios from 'axios';
 
 function AddTicket(props){
     const [value1, setValue1] = React.useState("normal");
-    const [value2, setValue2] = React.useState(1);
+    // const [value2, setValue2] = React.useState(1);
     const [value3, setValue3] = React.useState("");
     const onChange1 = e => {
       setValue1(e.target.value);
     };
-    const onChange2 = e => {
-      setValue2(e.target.value);
-    };
+    // const onChange2 = e => {
+    //   setValue2(e.target.value);
+    // };
 
     const editor = useRef(null);
     const [content, setContent] = useState('');
@@ -27,7 +27,7 @@ function AddTicket(props){
     function Modalhidefunc ()  {
         props.hidefunc();
         message.error('Ticket canceled');
-      };
+      }
 
     function AddTicket(e){
       e.preventDefault()
@@ -44,7 +44,7 @@ function AddTicket(props){
         subject:value3,
         priority:value1,
         description: content,
-        team: value2,
+        team: "2",
         file01: "",
         file02:"",
       }
@@ -68,9 +68,7 @@ function AddTicket(props){
         }
         
       })
-      .then(result=>{
-        console.log(result)
-      }).catch((err)=>{
+      .catch((err)=>{
         console.log(err.message)
       })
       props.hidefunc();
@@ -84,9 +82,11 @@ function AddTicket(props){
       <> 
         <Modal
           title={[
-            <p>Add ticket</p>,
-            <Input value={value3} onChange={(e)=>setValue3(e.target.value)} placeholder="Subject" />
-          ]}
+            <div key="1">
+              <p>Add ticket</p>
+              <Input value={value3} onChange={(e)=>setValue3(e.target.value)} placeholder="Subject" />
+            </div>
+           ]}
           centered
           visible={props.open}
           onCancel={Modalhidefunc}
@@ -105,7 +105,7 @@ function AddTicket(props){
         <Radio.Group onChange={onChange1} value={value1} >
           <Radio value={"normal"}>Normal</Radio>
           <Radio value={"urgent"}>Urgent</Radio>
-          <Radio value={"crirical"}>Crirical</Radio>
+          <Radio value={"critical"}>critical</Radio>
         </Radio.Group>
       </div>
       <br/>
@@ -116,7 +116,7 @@ function AddTicket(props){
                 config={config}
               tabIndex={1} // tabIndex of textarea
               onBlur={newContent => setContent(newContent)} // preferred to use only this option to update the content for performance reasons
-                onChange={newContent => {}}
+              
             />
     </Modal>
       </>

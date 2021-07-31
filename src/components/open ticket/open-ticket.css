@@ -75,6 +75,9 @@
     .ant-drawer-content-wrapper{
         width: 100% !important;
     }
+    
+}
+@media screen and ( max-height: 450px ) {
     .ant-drawer-body{
         overflow: unset !important;
     }

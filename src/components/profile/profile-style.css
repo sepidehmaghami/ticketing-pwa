@@ -51,6 +51,10 @@ p{
 .form-con{
     margin: 50px 50px 50px 0;
 }
+.CustomAvatar-image{
+    border-radius: 50%;
+    overflow: hidden;
+}
 @media (max-width:767px){
     .left-border{
         border-left:0px ;

@@ -1,4 +1,4 @@
-import { SearchOutlined,PlusSquareOutlined,QuestionCircleOutlined,UserOutlined } from '@ant-design/icons';
+import { PlusSquareOutlined,QuestionCircleOutlined,UserOutlined } from '@ant-design/icons';
 import React from 'react';
 import { Layout } from 'antd';
 import './header.css';

@@ -1,38 +1,34 @@
 import './profile-style.css';
 import Head from '../header/header';
-import { Layout ,Breadcrumb,message } from 'antd';
+import { Layout ,message } from 'antd';
 import { Row, Col } from 'antd';
 import { Input } from 'antd';
-import { UserOutlined,LockOutlined,MailOutlined} from '@ant-design/icons';
+import { LockOutlined} from '@ant-design/icons';
 import { Button } from 'antd';
-import { Avatar } from 'antd';
 import {useState,useEffect} from "react"
 import {Helmet} from "react-helmet";
 import axios from "axios"
-
+import Gravatar from "react-gravatar"
 const {  Header,Content } = Layout;
 
 function Profile ()  {
   const [user,setuser]=useState({name:"",email:"",first_name:"",last_name:""})
-  const [formdata,setformdata]=useState({name: "", lastname: "", pass: "", confimpass: "", email: ""})
+  const [formdata,setformdata]=useState({ pass: "", confimpass: "", oldpass: ""})
   const token=localStorage.getItem("token")
 
   const submitHandler=(e)=>{
       e.preventDefault()      
+      if(formdata.pass!==formdata.confimpass){
+        message.error("password and confirm password not equal")
+        return false
+      }
       const senddata ={
-        is_superuser:true,
-        email: formdata.email,
-        username:formdata.name,
-        first_name:formdata.name,
-        last_name:formdata.lastname,
-        is_staff:true,
-        is_active:true,
-        teams:"",
-        password:formdata.pass
+        old_password:formdata.oldpass,
+        password:formdata.pass,        
       }
 
      
-      axios.post("https://api.ticket.tempserver.ir/api/users/",
+      axios.post("https://api.ticket.tempserver.ir/api/changepassword/",
       senddata,
       {
         'content-type': 'application/json',
@@ -41,8 +37,8 @@ function Profile ()  {
       .then((res)=>{
         return res.data
       }).then((result)=>{
+
         console.log(result)
-        alert(JSON.stringify(result))
         setformdata({email: "", name: "", lastname: "", pass: "", confimpass: ""})
       }).catch((err)=>{
         console.log(err.message)
@@ -90,9 +86,12 @@ function Profile ()  {
                 <Row style={{marginTop:'8%'}}>
                     <Col flex={2} style={{margin:"50px" , marginBottom:"0px"}}>
                     <div className="avatar">
-                    <Avatar  size={150} icon={<UserOutlined />} />
+                    <Gravatar 
+                        email={user.email} 
+                        size={120}
+                        className="CustomAvatar-image"/>
+
                     </div>
-                    <p>Add image</p>
                     <p className="user-name">{user.name}</p>
                     <p>{user.first_name}</p>
                     <p>{user.last}</p>
@@ -102,20 +101,10 @@ function Profile ()  {
                     <Col flex={1} className="left-border"></Col>
                     <Col flex={4} className="form-con" style={{margin:"50px" , marginBottom:"0px"}}>
                     <form onSubmit={(e)=>{submitHandler(e)}}>
-                    <h2>User Information</h2>
-                    <Input value={formdata.email} onChange={(e)=>{setformdata((prev)=>{
-                      return {...prev,email:e.target.value}
-                    })}} size="large" placeholder="Email" className="ant-icon" prefix={<MailOutlined />} />
-                    <br />
-                    <br />
-                    <Input size="large" value={formdata.name} onChange={(e)=>{setformdata((prev)=>{
-                      return {...prev,name:e.target.value}
-                    })}} placeholder="Name" className="ant-icon" prefix={<UserOutlined />} />
-                    <br />
-                    <br />
+                    <h2>User Information chnage</h2>
                     <Input value={formdata.lastname} onChange={(e)=>{setformdata((prev)=>{
                       return {...prev,lastname:e.target.value}
-                    })}} size="large" placeholder="Last Name" className="ant-icon" prefix={<UserOutlined />} />
+                    })}} size="large" placeholder="old password" className="ant-icon" prefix={<LockOutlined />} />
                     <br />
                     <br />
                     <Input value={formdata.pass} onChange={(e)=>{setformdata((prev)=>{

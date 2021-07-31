@@ -1,11 +1,10 @@
 import './forgot.css';
-import React, { useContext , useState } from "react";
+import React, { useState } from "react";
 import { Layout,message } from 'antd';
 import { Row, Col } from 'antd';
 import imgLogin from '../../assets/login.jpg';
 import imagelogin from '../../assets/logo.svg';
-import { useHistory,useLocation } from 'react-router';
-import { Form, Input, Button, Checkbox } from 'antd';
+import { Form, Input, Button } from 'antd';
 import {Helmet} from "react-helmet";
 import axios from "axios"
 const { Content } = Layout;
@@ -175,6 +174,6 @@ return (
   </Layout>
  </>     
   );
-};
+}
 
 export default Forgot;
