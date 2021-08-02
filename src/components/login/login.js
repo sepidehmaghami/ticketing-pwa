@@ -95,7 +95,7 @@ function Login ()  {
                   },
                 ]}
               >
-                <Input
+                <Input.Password 
                   prefix={<LockOutlined className="ant-icon site-form-item-icon" />}
                   type="password"
                   placeholder="Password *"

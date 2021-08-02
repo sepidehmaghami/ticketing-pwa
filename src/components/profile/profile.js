@@ -101,7 +101,7 @@ function Profile ()  {
                     <Col flex={1} className="left-border"></Col>
                     <Col flex={4} className="form-con" style={{margin:"50px" , marginBottom:"0px"}}>
                     <form onSubmit={(e)=>{submitHandler(e)}}>
-                    <h2>User Information chnage</h2>
+                    <h2>User Information change</h2>
                     <Input value={formdata.lastname} onChange={(e)=>{setformdata((prev)=>{
                       return {...prev,lastname:e.target.value}
                     })}} size="large" placeholder="old password" className="ant-icon" prefix={<LockOutlined />} />

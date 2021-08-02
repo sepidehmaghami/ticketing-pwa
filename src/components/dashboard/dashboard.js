@@ -149,7 +149,7 @@ function Home(){
       {
         title: 'Created',
         dataIndex: 'created',
-        sorter: (a, b) => a.created2 - b.created2,
+        sorter: (x, y) => x.created2 - y.created2,
 
       },
   
@@ -221,11 +221,11 @@ function Home(){
             number: arr.length+1,
             subject:val.subject,
             created:val.created_at.split(".")[0],
-            created2: val.created_at.split(".")[0],
+            created2: (+ new Date(val.created_at.split(".")[0])),
             requester:val.user.username,
             customer:"Main",
             updated:val.updated_at.split(".")[0],
-            updated2:val.updated_at.split(".")[0],
+            updated2:(+ new Date(val.updated_at.split(".")[0])),
           })
       })
       return result
@@ -342,7 +342,7 @@ function Home(){
         </Col>
         <Col >
         <div className="search-table">
-            <Search  onChange={(e)=>onSearch(e)} style={{ width: 200,marginRight:'15px' }} />
+            <Search onChange={(e)=>onSearch(e)} style={{ width: 200,height: 30,marginRight:'20px' }} />
             <Pagination defaultCurrent={1} onChange={changePage} total={curentData} />  
         </div>
         </Col>
@@ -357,6 +357,5 @@ function Home(){
     </>
     );
 }
-
 
 export default Home;
