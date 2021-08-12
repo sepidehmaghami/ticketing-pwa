@@ -157,7 +157,7 @@ function Home(){
         title: 'Requester',
         dataIndex: 'requester',
         // eslint-disable-next-line react/display-name
-        render: text => <a style={{color:"#3699FF"}}>{text}</a>,
+        render: text => <a style={{color:"#3699FF"}} href={'./profile'}>{text}</a>,
       },
       {
         title: 'Customer',
