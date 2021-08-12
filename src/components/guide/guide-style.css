@@ -6,3 +6,28 @@
         padding: 0 30px  !important;
     }
 }
+
+.or {
+    display: block;
+    width: 100%;
+    height: 1px;
+    border-bottom: 1px solid #dee3e4;
+    position: relative;
+    margin: 35px 0;
+  }
+  
+  .or:before {
+    width: 40px;
+    height: 18px;
+    position: absolute;
+    top: -5px;
+    right: calc(50% - 20px);
+    background-color: #fff;
+    text-align: center;
+    line-height: 10px;
+    color: #555;
+  }
+
+  .arashweb {
+      padding-top: 20px;
+  }
