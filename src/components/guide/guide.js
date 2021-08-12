@@ -30,7 +30,7 @@ function Guide ()  {
           <h4>FrontEnd by : <a href={'./profile'}> Mrs. Mobina Ansari Astaneh</a></h4>
           Email : <a href="mobinaansariit@gmail.com">Ansari - Email</a> <br/>
           Telegram : <a href="@M_Ansari_Astaneh">Ansari - Telegram</a> <br/>
-          Linkedin : <a href="">Linkedin</a> <br/>
+          Linkedin : <a href="https://www.linkedin.com/in/mobina-ansari-astaneh-431981213/">Ansari - Linkedin</a> <br/>
           Phone : +98 915 445 0822
           <br/><br/>
           <h4>BackEnd by : <a href={'./profile'}> Mr. Ata Attarian</a> </h4>
@@ -40,8 +40,8 @@ function Guide ()  {
           <br/><br/>
           <h4>Tested by : <a href={'./profile'}> Mrs. Sepideh Darban Maghami </a></h4>
           Email : <a href="sepidehmaghamiit@gmail.com">Maghami - Email</a> <br/>
-          Telegram : <a href="@S_darban_maghami">Attarian - Telegram</a> <br/>
-          Linkedin : <a href="">Attarian - Linkedin</a> <br/>
+          Telegram : <a href="@S_darban_maghami">Maghami - Telegram</a> <br/>
+          Linkedin : <a href="https://www.linkedin.com/in/sepideh-darban-maghami-7bbb4b1b9/">Maghami - Linkedin</a> <br/>
           Phone : +98 915 066 0935
           <br/><br/>
         </div>
