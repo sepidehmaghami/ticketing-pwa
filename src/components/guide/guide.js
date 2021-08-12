@@ -18,9 +18,33 @@ function Guide ()  {
     
       <Content style={{ padding: '0 100px' }}>
         <Breadcrumb style={{ margin: '16px 0' }}>
-         <Breadcrumb.Item style={{ fontWeight: 'bold' }}>Guide</Breadcrumb.Item>
+         {/* <Breadcrumb.Item style={{ fontWeight: 'bold' }}>Guide</Breadcrumb.Item> */}
         </Breadcrumb>
-        <div className="site-layout-content">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Egestas purus viverra accumsan in nisl nisi. Arcu cursus vitae congue mauris rhoncus aenean vel elit scelerisque. In egestas erat imperdiet sed euismod nisi porta lorem mollis. Morbi tristique senectus et netus. Mattis pellentesque id nibh tortor id aliquet lectus proin. Sapien faucibus et molestie ac feugiat sed lectus vestibulum. Ullamcorper velit sed ullamcorper morbi tincidunt ornare massa eget. Dictum varius duis at consectetur lorem. Nisi vitae suscipit tellus mauris a diam maecenas sed enim. Velit ut tortor pretium viverra suspendisse potenti nullam. Et molestie ac feugiat sed lectus. Non nisi est sit amet facilisis magna. Dignissim diam quis enim lobortis scelerisque fermentum. Odio ut enim blandit volutpat maecenas volutpat. Ornare lectus sit amet est placerat in egestas erat. Nisi vitae suscipit tellus mauris a diam maecenas sed. Placerat duis ultricies lacus sed turpis tincidunt id aliquet.</div>
+        <div className="site-layout-content">
+         <h2>Arashweb</h2>
+         <h4>Company : <a href="https://arashweb.com/fa/blog/">Arashweb</a></h4>
+          Email : <a href="info@arashweb.ir">Arashweb - Email</a> <br/>
+          Tel : +98 (513) 848-2949 <br/>
+          Phone : +98 (915) 715-3194 <br/>
+          Address: Ebn Sina St. #211, Floor 2, Office A, Mashhad, Iran <br/><br/>
+          <h4>FrontEnd by : <a href={'./profile'}> Mrs. Mobina Ansari Astaneh</a></h4>
+          Email : <a href="mobinaansariit@gmail.com">Ansari - Email</a> <br/>
+          Telegram : <a href="@M_Ansari_Astaneh">Ansari - Telegram</a> <br/>
+          Linkedin : <a href="">Linkedin</a> <br/>
+          Phone : +98 915 445 0822
+          <br/><br/>
+          <h4>BackEnd by : <a href={'./profile'}> Mr. Ata Attarian</a> </h4>
+          Email : <a href="ata.attarian78@gmail.com">Attarian - Email</a> <br/>
+          Telegram : <a href="">Attarian - Telegram</a> <br/>
+          Linkedin : <a href="">Attarian - Linkedin</a>
+          <br/><br/>
+          <h4>Tested by : <a href={'./profile'}> Mrs. Sepideh Darban Maghami </a></h4>
+          Email : <a href="sepidehmaghamiit@gmail.com">Maghami - Email</a> <br/>
+          Telegram : <a href="@S_darban_maghami">Attarian - Telegram</a> <br/>
+          Linkedin : <a href="">Attarian - Linkedin</a> <br/>
+          Phone : +98 915 066 0935
+          <br/><br/>
+        </div>
       </Content>
      
       </Layout>

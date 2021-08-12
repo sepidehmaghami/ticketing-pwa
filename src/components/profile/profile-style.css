@@ -64,3 +64,12 @@ p{
         margin: 40px auto auto 0 !important;
     }
 }
+@media (max-width:878px) {
+    .left-border {
+        border-left: 0px;
+        display: none;
+    }
+    .form-con {
+        margin: 40px auto auto 0 !important;
+    }
+}
