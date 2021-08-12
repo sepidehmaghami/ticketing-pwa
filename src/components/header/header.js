@@ -22,7 +22,7 @@ function Head (props){
     history.push("/guide");
   }
   const dashboard = () =>{ 
-    message.success('Home page');
+    message.success('Dashboard page');
     history.push("/dashboard");
   }
   const Profile=()=>{
