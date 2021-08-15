@@ -1,42 +1,66 @@
 .arashweb {
-    padding-top: 20px;
+  padding-top: 20px;
 }
 
-.ant-layout-content{
-    background-color: white !important;
+.ant-layout-content {
+  background-color: white !important;
 }
 
-@media screen and (max-width:767px) {
-    main.ant-layout-content{
-        padding: 0 30px ;
-    }
+@media screen and (max-width: 767px) {
+  main.ant-layout-content {
+    padding: 0 30px;
+  }
 }
 
 .or {
-    display: block;
-    width: 100%;
-    height: 1px;
-    border-bottom: 1px solid #dee3e4;
-    position: relative;
-    margin: 35px 0;
-  }
-  
-  .or:before {
-    width: 40px;
-    height: 18px;
-    position: absolute;
-    top: -5px;
-    right: calc(50% - 20px);
-    background-color: #fff;
-    text-align: center;
-    line-height: 10px;
-    color: #555;
-  }
+  display: block;
+  width: 100%;
+  height: 1px;
+  border-bottom: 1px solid #dee3e4;
+  position: relative;
+  margin: 35px 0;
+}
 
-  .goal {
-      color: purple;
-  }
+.or:before {
+  width: 40px;
+  height: 18px;
+  position: absolute;
+  top: -5px;
+  right: calc(50% - 20px);
+  background-color: #fff;
+  text-align: center;
+  line-height: 10px;
+  color: #555;
+}
 
-  .goal_context {
-      color: #2a2a2a;
-  }
+.goal {
+  color: purple;
+}
+
+.goal_context {
+  color: #2a2a2a;
+}
+Footer {
+  display: flex;
+  /* padding-top: 150px; */
+  flex-direction: row;
+  margin-top: 178px;
+  width: 100%;
+  height: 140px;
+  background-color: purple !important;
+}
+.footer_content {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  color: #dee3e4;
+}
+.white {
+  color: white;
+}
+Footer img {
+  padding: 10px 80px 20px 75px;
+}
+.layout{
+    background-color: white !important;
+}

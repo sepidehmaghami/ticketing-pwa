@@ -1,85 +1,119 @@
-import { PlusSquareOutlined,QuestionCircleOutlined,UserOutlined } from '@ant-design/icons';
-import React from 'react';
-import { Layout } from 'antd';
-import './header.css';
-import { Row, Col } from 'antd';
-import image from '../../assets/white-logo.svg';
-import { Menu,Dropdown,message } from 'antd';
-import AddTicket from "../add ticket/add-ticket"
-import {useState} from 'react';
-import {useHistory} from 'react-router-dom';
-import {  Popconfirm } from 'antd';
+import {
+  PlusSquareOutlined,
+  QuestionCircleOutlined,
+  UserOutlined,
+} from "@ant-design/icons";
+import React from "react";
+import { Layout } from "antd";
+import "./header.css";
+import { Row, Col } from "antd";
+import image from "../../assets/white-logo.svg";
+import { Menu, Dropdown, message } from "antd";
+import AddTicket from "../add ticket/add-ticket";
+import { useState } from "react";
+import { useHistory } from "react-router-dom";
+import { Popconfirm } from "antd";
 
 const { Header } = Layout;
 
-function Head (props){
+function Head(props) {
   const history = useHistory();
-  const [newTicket,setNewTicket] = useState(false)
-  const username=localStorage.getItem("username")
+  const [newTicket, setNewTicket] = useState(false);
+  const username = localStorage.getItem("username");
 
-  const routeChange = () =>{ 
-    message.success('Guide page');
+  const routeChange = () => {
+    message.success("Guide page");
     history.push("/guide");
-  }
-  const dashboard = () =>{ 
-    message.success('Dashboard page');
+  };
+  const dashboard = () => {
+    message.success("Dashboard page");
     history.push("/dashboard");
-  }
-  const Profile=()=>{
+  };
+  const Profile = () => {
     message.success("profile");
     history.push("/profile");
-  }
-  const logOut=()=>{
+  };
+  const logOut = () => {
     message.success("Log out");
-    localStorage.removeItem("token")
-    localStorage.removeItem("username")
-    localStorage.removeItem("auth")
+    localStorage.removeItem("token");
+    localStorage.removeItem("username");
+    localStorage.removeItem("auth");
     history.push("/login");
-
-  }
-  const cancel=()=>{
+  };
+  const cancel = () => {
     message.error("Log out canceled");
-  }
+  };
   const menu = (
     <Menu>
-      <Menu.Item key="1" >
-      <a href={"./profile"} onClick={Profile}>Profile</a>
+      <Menu.Item key="1">
+        <a href={"./profile"} onClick={Profile}>
+          Profile
+        </a>
         {/* Profile */}
       </Menu.Item>
-      <Menu.Item key="2" >
-      <Popconfirm
-            title="Sure to logout?"
-            onConfirm={ logOut}
-            onCancel={cancel}
-          >
-      <a href={'./login'}>Log out</a>
-          </Popconfirm>
+      <Menu.Item key="2">
+        <Popconfirm
+          title="Sure to logout?"
+          onConfirm={logOut}
+          onCancel={cancel}
+        >
+          <a href={"./login"}>Log out</a>
+        </Popconfirm>
       </Menu.Item>
     </Menu>
   );
-  return(
+  return (
     <>
-  <Layout className="layout">
-    <Header>
-      <Row wrap={false} className="display">
-      <Col flex="none">
-        <div><img src={image} width="40px" height="40px" alt="logo" onClick={dashboard}/></div>
-      </Col>
-      <Col > <div className="icons-list">
-       <PlusSquareOutlined style={{ padding: '0 14px' }} onClick={()=>{setNewTicket(true)}}/>
-       <QuestionCircleOutlined style={{ padding: '0 13px' }} onClick={routeChange}/> 
-       <Dropdown overlay={menu} placement="bottomRight" >
-       <span className="username-style">{username}
-       <UserOutlined style={{ fontSize:'20px', padding: '0px 0px 0px 12px' }}/> 
-       </span>
-      </Dropdown>
-       </div>
-       </Col>
-    </Row>
-    </Header>
-  </Layout>
-  <AddTicket changeTicket={()=>{props.changeTicket()}} open={newTicket} hidefunc={()=>{setNewTicket(false)}}/>
-     </>
+      <Layout className="layout">
+        <Header>
+          <Row wrap={false} className="display">
+            <Col flex="none">
+              <div>
+                <img
+                  src={image}
+                  width="40px"
+                  height="40px"
+                  alt="logo"
+                  onClick={dashboard}
+                />
+              </div>
+            </Col>
+            <Col>
+              {" "}
+              <div className="icons-list">
+                <PlusSquareOutlined
+                  style={{ padding: "0 14px" }}
+                  onClick={() => {
+                    setNewTicket(true);
+                  }}
+                />
+                <QuestionCircleOutlined
+                  style={{ padding: "0 13px" }}
+                  onClick={routeChange}
+                />
+                <Dropdown overlay={menu} placement="bottomRight">
+                  <span className="username-style">
+                    {username}
+                    <UserOutlined
+                      style={{ fontSize: "20px", padding: "0px 0px 0px 12px" }}
+                    />
+                  </span>
+                </Dropdown>
+              </div>
+            </Col>
+          </Row>
+        </Header>
+      </Layout>
+      <AddTicket
+        changeTicket={() => {
+          props.changeTicket();
+        }}
+        open={newTicket}
+        hidefunc={() => {
+          setNewTicket(false);
+        }}
+      />
+    </>
   );
 }
 export default Head;

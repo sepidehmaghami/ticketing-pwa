@@ -42,7 +42,7 @@ function Admin(){
   const [curentData,setcurentData] = useState()
   const [redirect,setredirect] = useState(false)
   const [modalOpen,setmodalOpen] = useState(false)
-  const [formdata,setformdata]=useState({superuser:false,active:true,staff:false,name: "",teams:"", lastname: "", pass: "", confimpass: "", email: ""})
+  const [formdata,setformdata]=useState({active:true,staff:false,name: "",teams:"", lastname: "", pass: "", confimpass: "", email: ""})
   const [url,seturl] = useState("https://api.ticket.tempserver.ir/api/users/")
   var token= localStorage.getItem("token")
   var username= localStorage.getItem("username")
@@ -79,12 +79,13 @@ function Admin(){
         title: 'team',
         dataIndex: 'team',
       },
+      // {
+      //   title: 'superuser',
+      //   dataIndex: 'superuser',
+      //   // eslint-disable-next-line react/display-name
+      //   render: text => <a style={{color:"#3699FF"}}>{text?"yes":"no"}</a>,
+      // },
       {
-        title: 'superuser',
-        dataIndex: 'superuser',
-        // eslint-disable-next-line react/display-name
-        render: text => <a style={{color:"#3699FF"}}>{text?"yes":"no"}</a>,
-      },{
         title: 'active',
         dataIndex: 'active',
          // eslint-disable-next-line react/display-name
@@ -149,7 +150,7 @@ function Admin(){
               username:val.username+itsme,
               active:val.is_active,
               email:val.email,
-              superuser:val.is_superuser,
+              // superuser:val.is_superuser,
               staff:val.is_staff
             })
         })
@@ -168,7 +169,7 @@ function Admin(){
       username:formdata.name,
       first_name:formdata.name,
       last_name:formdata.lastname,
-      is_superuser:formdata.superuser,
+      // is_superuser:formdata.superuser,
       is_staff:formdata.staff,
       is_active:formdata.active,
       team:formdata.teams,
@@ -188,7 +189,7 @@ function Admin(){
       }
     }).then((result)=>{
       alert(JSON.stringify(result))
-      setformdata({email: "", name: "",superuser:false,active:true,staff:false,teams:"", lastname: "", pass: "", confimpass: ""})
+      setformdata({email: "", name: "",active:true,staff:false,teams:"", lastname: "", pass: "", confimpass: ""})
       setchange(prev=>!prev)
     }).catch((err)=>{
       console.log(err.message)
@@ -292,7 +293,7 @@ function Admin(){
                     })}} size="large" placeholder="teams" className="ant-icon" prefix={<UserOutlined />} />
                     <br/>
                     <br/>
-                    <div className="b-border">
+                    {/* <div className="b-border">
                         <span className="m-r">superuser </span>
                         <Radio.Group onChange={(e)=>{
                       setformdata((prev)=>{
@@ -301,7 +302,7 @@ function Admin(){
                         <Radio value={true}>yes</Radio>
                         <Radio value={false}>no</Radio>
                         </Radio.Group>
-                    </div>
+                    </div> */}
                     <div className="b-border">
                         <span className="m-r">staff</span>
                         <Radio.Group onChange={(e)=>{

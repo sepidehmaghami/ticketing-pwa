@@ -56,7 +56,7 @@
 
 .ant-drawer-close {
     display: none !important;
-}
+} 
 .ant-comment-content-author{
     flex-direction: column;
     justify-content: space-between;
@@ -80,6 +80,13 @@
     color:blue;
     background-color:rgba(0, 0, 255, 0.514) ;
     border-color: blue;
+}
+.header_open_ticket{
+    display: flex;
+    justify-content: space-between;
+}
+.pending {
+    margin-right: 15px;
 }
 @media screen and (max-width:767px) {
     .ant-drawer-content-wrapper{
