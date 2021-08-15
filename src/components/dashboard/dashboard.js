@@ -47,6 +47,27 @@ function Home(){
     )
     
   }
+  const addArchive=(id)=>{
+    axios.get(`https://api.ticket.tempserver.ir/api/archive/${id}/`,{
+      headers:{
+        'content-type': 'application/json',
+        "AUTHORIZATION": "Bearer "+token
+      }
+    })
+    .then(res=>{
+      if(res.status===200){
+        return res.data
+      }else{
+        message.error("try agin")
+      }
+    })
+    .then(result=>{
+      message.success(result.message)
+    })
+    .catch((err)=>{
+      console.log(err.message)
+    })
+  }
   const history=useHistory()    
     const openTicketfunc=(id)=>{
       axios.get("https://api.ticket.tempserver.ir/api/ticket/?limit=10000&offset=0",{
@@ -71,8 +92,12 @@ function Home(){
         return find
       }).then( (find)=>{
         history.push("/"+id)
+        console.log(find)
          setidTiketOpen({
           key: find.id,
+          description:find.description,
+          priority:find.priority,
+          team:find.team,
           status: [find.tag],
           subject:find.subject,
           created:find.created_at,
@@ -95,9 +120,13 @@ function Home(){
       render: status => (
         <span>
           {status.map(tag => {
-            let color = 'green';
+            var color = 'green';
             if(tag==="done"){
               color="red"
+            }else if (tag==="open"){
+              color="yellow"
+            }else if (tag==="answered"){
+              color="blue"
             }
             return (
               <Tag color={color} key={tag}>
@@ -183,6 +212,7 @@ function Home(){
               <a>Delete {record.name}</a>
             </Popconfirm>
               <a onClick={()=>{openTicketfunc(record.key)} } >Open</a>
+              <a onClick={()=>{addArchive(record.key)} } >add archive</a>
             </Space>
             </>
             
@@ -246,6 +276,7 @@ function Home(){
     comments={commentTicket}
     open={openTicket} 
     changeComment={()=>{
+        setchange(prev=>!prev)
         openTicketfunc(idTiketOpen.key)
     }}
     hidefunc={()=>{

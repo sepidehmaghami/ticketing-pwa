@@ -1,9 +1,14 @@
+.arashweb {
+    padding-top: 20px;
+}
+
 .ant-layout-content{
     background-color: white !important;
 }
+
 @media screen and (max-width:767px) {
     main.ant-layout-content{
-        padding: 0 30px  !important;
+        padding: 0 30px ;
     }
 }
 
@@ -28,6 +33,10 @@
     color: #555;
   }
 
-  .arashweb {
-      padding-top: 20px;
+  .goal {
+      color: purple;
+  }
+
+  .goal_context {
+      color: #2a2a2a;
   }

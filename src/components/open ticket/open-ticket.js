@@ -59,6 +59,37 @@ function OpenTicket(props) {
  useEffect(()=>{
   message.success("Ticket open");
  },[])
+
+  const answered=(tag)=>{
+    axios.put("https://api.ticket.tempserver.ir/api/ticket/"+props.data.key+"/",{
+      subject: props.data.subject,
+      priority: props.data.priority,
+      description: props.data.description,
+      team: props.data.team.id,
+      tag:tag
+    },
+    {headers:{
+        'content-type': 'application/json',
+        "AUTHORIZATION" : "Bearer "+token
+      }
+    })
+    .then(res=>{
+      console.log(res)
+      if(res.status===200||res.status===201){
+        props.changeComment()
+      }
+    })
+    .catch(err=>{
+      console.log(err.message)
+    }
+    )
+  }
+ useEffect(()=>{
+   if(props.data.status[0]==="new"){
+    answered("open")
+   }
+ },[])
+
   const submited=()=>{
     if(content.trim()===""){
       message.error("plase type somthing")
@@ -79,11 +110,14 @@ function OpenTicket(props) {
     .then(res=>{
       console.log(res)
       if(res.status===200||res.status===201){
+        const tag=props.data.status[0]==="open"?"answered":"open"
+        answered(tag)
         setContent("")
         props.changeComment()
         setLoad(true)
         setSpiner(false)
         message.success("Tickets sent");
+
       }else{
         message.error("somthing Wrong")
       }
@@ -94,6 +128,7 @@ function OpenTicket(props) {
       console.log(err.message)
     }
     )
+
   }
   const deletingTicket=()=>{
     props.deletTicket(comment[0].ticket)
@@ -141,6 +176,10 @@ function OpenTicket(props) {
   if(props.data.status[0]==="done"){
     classStatus="ant-tag-red"
     elemTicketrm=""
+  }else if(props.data.status[0]==="open"){
+    classStatus="ant-tag-yellow"
+  }else if(props.data.status[0]==="answered"){
+    classStatus="ant-tag-blue"
   }
     return (
         <>
