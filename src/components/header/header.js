@@ -49,7 +49,6 @@ function Head(props) {
         <a href={"./profile"} onClick={Profile}>
           Profile
         </a>
-        {/* Profile */}
       </Menu.Item>
       <Menu.Item key="2">
         <Popconfirm
