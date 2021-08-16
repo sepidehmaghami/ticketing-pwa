@@ -1,10 +1,10 @@
 import './login.css';
-import React, { useState  } from "react";
+import React, { useState,useEffect  } from "react";
 import { Layout, message } from 'antd';
 import { Row, Col } from 'antd';
 import imgLogin from '../../assets/login.jpg';
 import imagelogin from '../../assets/logo.svg';
-import  { Redirect } from 'react-router-dom'
+import  {  useHistory } from 'react-router-dom'
 import { Form, Input, Button, Checkbox } from 'antd';
 import { UserOutlined, LockOutlined } from '@ant-design/icons';
 import {Helmet} from "react-helmet";
@@ -13,6 +13,18 @@ import axios from "axios"
 const { Content } = Layout;
 function Login ()  {
   const [red,setred] = useState(false)
+  const [check,setcheck] = useState(false)
+  const [form]=Form.useForm()
+  const storage=localStorage.getItem("login")
+  useEffect(() => {
+    const storageObj=JSON.parse(storage)
+    if(storage !==null){
+      form.setFieldsValue({
+        username:storageObj.username,
+        password:storageObj.password,        
+      })
+    }    
+  }, [])
   
   const handleFormSubmit = values => {
     const name = values.username,
@@ -23,6 +35,12 @@ function Login ()  {
     })
     .then((res)=>{
       if(res.status===200){
+        if(check===true){
+          localStorage.setItem("login",JSON.stringify({
+            username:name,
+            password:pass
+          }))
+        }
         return res.data
       }else if(res.status === 401){
         message.error("username or password is invalid")
@@ -31,8 +49,8 @@ function Login ()  {
     .then((res)=>{   
       localStorage.setItem("auth","true")
       localStorage.setItem("token",res.access)
-      localStorage.setItem("username",name)
-      return res;
+      return localStorage.setItem("username",name)
+      
     }).then(()=>{
       setTimeout(()=>{
         localStorage.removeItem("token")
@@ -45,9 +63,9 @@ function Login ()  {
       console.log(err.message)
     })
   };
-  let redirected;
+  const history=useHistory()
   if(red){
-    redirected=<Redirect to="/" />
+    history.push("/")
   }
   
     return (
@@ -57,7 +75,6 @@ function Login ()  {
           <title>Ticketing - Login Page</title>
       </Helmet>
     
-    {redirected}
    <Layout >
     <Content className="login__layout">
     <Row>
@@ -68,6 +85,7 @@ function Login ()  {
             <Form 
               name="normal_login"
               className="login-form"
+              form={form}
               initialValues={{
                 remember: true,
               }}
@@ -84,7 +102,7 @@ function Login ()  {
                   },
                 ]}
               >
-                <Input  prefix={<UserOutlined className="ant-icon site-form-item-icon " />} placeholder="Username/Email *" />
+                <Input prefix={<UserOutlined className="ant-icon site-form-item-icon " />} placeholder="Username/Email *" />
               </Form.Item>
               <Form.Item className="ant-input-size"
                 name="password"
@@ -109,7 +127,7 @@ function Login ()  {
               <Form.Item >
               <div className="width-style"> 
                 <Form.Item name="remember"  noStyle>
-                <Checkbox>Remember me</Checkbox>
+                <Checkbox onChange={(e)=>{setcheck(e.target.checked)}}>Remember me</Checkbox>
                 </Form.Item>
                 <a className="login-form-forgot" href={'./forgot'}>
                   Forgot password

@@ -233,8 +233,8 @@ function OpenTicket(props) {
             </span>
             </div>
             <div>
-          <span><Button type="danger" className="pending">Pending</Button></span>
-          <span><Button type="primary">In Progress</Button></span>
+          <span><Button onClick={()=>answered("pending")} type="danger" className="pending">Pending</Button></span>
+          <span><Button onClick={()=>answered("progress")} type="primary">In Progress</Button></span>
           </div>
           </div>
         ]}

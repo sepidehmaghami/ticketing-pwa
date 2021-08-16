@@ -13,6 +13,14 @@
     color: #676767 !important;
     background-color: #ebe9e9 !important;
 }
+.ant-input-group > .ant-input:first-child, .ant-input-group-addon:first-child {
+    height: 32px;
+}
+.ant-input-search > .ant-input-group > .ant-input-group-addon:last-child .ant-input-search-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 @media screen and (max-width:767px) {
     .ant-layout-content{
         padding: 0 15px !important;

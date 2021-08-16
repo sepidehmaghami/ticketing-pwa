@@ -24,6 +24,7 @@ function Home() {
   const [idTiketOpen, setidTiketOpen] = useState({ name: "", subject: "" });
   const [commentTicket, setcommentTicket] = useState();
   const [curentData, setcurentData] = useState();
+  const [archive, setarchive] = useState(true);
   const [url, seturl] = useState(
     "https://api.ticket.tempserver.ir/api/ticket/"
   );
@@ -70,6 +71,15 @@ function Home() {
         console.log(err.message);
       });
   };
+
+  const showArchive=()=>{
+    const urlArchive=archive?"ticketarchive/":"ticket/"
+    seturl(
+      "https://api.ticket.tempserver.ir/api/"+urlArchive
+    );
+    setchange(prev=>!prev);
+    setarchive(prev=>!prev);
+  }
   const history = useHistory();
   const openTicketfunc = (id) => {
     axios
@@ -262,6 +272,7 @@ function Home() {
         }
       })
       .then((result) => {
+        console.log(result)
         setcurentData(result.count);
         return result.results;
       })
@@ -274,7 +285,7 @@ function Home() {
           arr.push({
             key: val.id,
             status: [val.tag],
-            number: arr.length + 1,
+            number:val.id ,
             subject: val.subject,
             created: val.created_at.split(".")[0],
             created2: +new Date(val.created_at.split(".")[0]),
@@ -379,8 +390,9 @@ function Home() {
 
   const changePage = (curent) => {
     let ofset = (curent - 1) * 10;
+    const urlArchive=archive?"ticket/":"ticketarchive/"
     seturl(
-      "https://api.ticket.tempserver.ir/api/ticket/?limit=10&offset=" + ofset
+      `https://api.ticket.tempserver.ir/api/${urlArchive}?limit=10&offset=` + ofset
     );
     setchange((prev) => !prev);
   };
@@ -405,7 +417,7 @@ function Home() {
               <Col flex="none">
                 <div>
                   {/* <MenuList/> */}
-                  <Button type="dashed" primary>
+                  <Button type="dashed" onClick={()=>showArchive()} primary>
                     Archive
                   </Button>
                 </div>

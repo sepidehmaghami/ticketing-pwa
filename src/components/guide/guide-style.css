@@ -42,7 +42,6 @@
 }
 Footer {
   display: flex;
-  /* padding-top: 150px; */
   flex-direction: row;
   margin-top: 178px;
   width: 100%;
@@ -54,6 +53,7 @@ Footer {
   justify-content: space-between;
   align-items: flex-end;
   color: #dee3e4;
+
 }
 .white {
   color: white;

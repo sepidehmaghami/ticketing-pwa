@@ -34,11 +34,7 @@ function Profile ()  {
         'content-type': 'application/json',
         "AUTHORIZATION" : "Bearer "+token
       })
-      .then((res)=>{
-        return res.data
-      }).then((result)=>{
-
-        console.log(result)
+      .then(()=>{
         setformdata({email: "", name: "", lastname: "", pass: "", confimpass: ""})
       }).catch((err)=>{
         console.log(err.message)
