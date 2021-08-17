@@ -61,7 +61,7 @@ function OpenTicket(props) {
     setLoad(true);
   }, [Load]);
   useEffect(() => {
-    message.success("Ticket open");
+    // message.success("Ticket open");
   }, []);
 
   const answered = (tag) => {

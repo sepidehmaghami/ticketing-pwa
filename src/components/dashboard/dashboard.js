@@ -208,6 +208,10 @@ function Home() {
       dataIndex: "customer",
     },
     {
+      title: "Team",
+      dataIndex: "team",
+    },
+    {
       title: "Updated",
       dataIndex: "updated",
       sorter: (a, b) => a.updated2 - b.updated2,
@@ -285,6 +289,7 @@ function Home() {
             created: val.created_at.split(".")[0],
             created2: +new Date(val.created_at.split(".")[0]),
             requester: val.user.username,
+            team:val.team.title,
             customer: "Main",
             updated: val.updated_at.split(".")[0],
             updated2: +new Date(val.updated_at.split(".")[0]),
@@ -365,6 +370,7 @@ function Home() {
               created: val.created_at,
               created2: +new Date(val.created_at),
               requester: val.user.username,
+              team:val.team.title,
               customer: "Main",
               updated: val.updated_at,
               updated2: +new Date(val.updated_at),

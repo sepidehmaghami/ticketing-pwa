@@ -27,12 +27,12 @@ function Profile ()  {
         password:formdata.pass,        
       }
 
-     
+     console.log(senddata)
       axios.post("https://api.ticket.tempserver.ir/api/changepassword/",
       senddata,
       {
         'content-type': 'application/json',
-        "AUTHORIZATION" : "Bearer "+token
+        'WWW-Authenticate' : "Bearer "+token
       })
       .then(()=>{
         setformdata({email: "", name: "", lastname: "", pass: "", confimpass: ""})
@@ -98,8 +98,8 @@ function Profile ()  {
                     <Col flex={4} className="form-con" style={{margin:"50px" , marginBottom:"0px"}}>
                     <form onSubmit={(e)=>{submitHandler(e)}}>
                     <h2>User Information change</h2>
-                    <Input value={formdata.lastname} onChange={(e)=>{setformdata((prev)=>{
-                      return {...prev,lastname:e.target.value}
+                    <Input value={formdata.oldpass} onChange={(e)=>{setformdata((prev)=>{
+                      return {...prev,oldpass:e.target.value}
                     })}} size="large" placeholder="old password" className="ant-icon" prefix={<LockOutlined />} />
                     <br />
                     <br />
