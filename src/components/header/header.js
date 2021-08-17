@@ -19,6 +19,7 @@ const { Header } = Layout;
 function Head(props) {
   const history = useHistory();
   const [newTicket, setNewTicket] = useState(false);
+  const [dropdown, setDropdown] = useState(false);
   const username = localStorage.getItem("username");
 
   const routeChange = () => {
@@ -90,7 +91,7 @@ function Head(props) {
                   style={{ padding: "0 13px" }}
                   onClick={routeChange}
                 />
-                <Dropdown overlay={menu} placement="bottomRight">
+                <Dropdown overlay={menu} visible={dropdown} onVisibleChange={(e)=>{setDropdown(e)}}  placement="bottomRight">
                   <span className="username-style">
                     {username}
                     <UserOutlined

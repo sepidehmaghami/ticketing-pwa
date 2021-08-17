@@ -235,13 +235,14 @@ function Home() {
               >
                 Open
               </a>
-              <a
+              {archive?(<a
                 onClick={() => {
                   addArchive(record.key);
                 }}
               >
                 add archive
-              </a>
+              </a>):""}
+              
             </Space>
           </>
         );
@@ -391,7 +392,7 @@ function Home() {
     );
     setchange((prev) => !prev);
   };
-
+  const textArchive=archive ?"Archive":"Ticket"
   return (
     <>
       <Helmet>
@@ -411,9 +412,8 @@ function Home() {
             <Row wrap={false} className="display">
               <Col flex="none">
                 <div>
-                  {/* <MenuList/> */}
                   <Button type="dashed" onClick={() => showArchive()} primary>
-                    Archive
+                    {textArchive}
                   </Button>
                 </div>
               </Col>

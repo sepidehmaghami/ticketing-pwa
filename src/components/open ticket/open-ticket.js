@@ -27,7 +27,7 @@ const ExampleComment1 = (props) => {
           {props.name} <span>{props.email}</span>
         </div>
       }
-      datetime={<div className="mt-1">{props.date.split(".")[0]}</div>}
+      datetime={<div className="mt-1">{props.date.split(".")[0].replace(/-/g,"/").replace("T"," - ")}</div>}
       avatar={
         <Avatar className="b-color" alt="sepideh">
           <Gravatar email={props.email} className="CustomAvatar-image" />
@@ -227,14 +227,14 @@ function OpenTicket(props) {
               </span>
             </span>
             <span className="font-span">
-              - Created {props.data.created.split(".")[0]} - Requester:{" "}
+              - Created {props.data.created.split("T")[0].replace(/-/g,"/")} - Requester:{" "}
               {props.data.requester}
               <span className="color-name"></span>
             </span>
             </div>
             <div>
           <span><Button onClick={()=>answered("pending")} type="danger" className="pending">Pending</Button></span>
-          <span><Button onClick={()=>answered("progress")} type="primary">In Progress</Button></span>
+          <span><Button onClick={()=>answered("in progress")} type="primary">In Progress</Button></span>
           </div>
           </div>
         ]}
