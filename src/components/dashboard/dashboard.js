@@ -142,6 +142,8 @@ function Home() {
               color = "yellow";
             } else if (tag === "answered") {
               color = "blue";
+            } else if (tag === "inprogres") {
+              color = "purple";
             }
             return (
               <Tag color={color} key={tag}>
@@ -239,14 +241,17 @@ function Home() {
               >
                 Open
               </a>
-              {archive?(<a
-                onClick={() => {
-                  addArchive(record.key);
-                }}
-              >
-                add archive
-              </a>):""}
-              
+              {archive ? (
+                <a
+                  onClick={() => {
+                    addArchive(record.key);
+                  }}
+                >
+                  add archive
+                </a>
+              ) : (
+                ""
+              )}
             </Space>
           </>
         );
@@ -289,7 +294,7 @@ function Home() {
             created: val.created_at.split(".")[0],
             created2: +new Date(val.created_at.split(".")[0]),
             requester: val.user.username,
-            team:val.team.title,
+            team: val.team.title,
             customer: "Main",
             updated: val.updated_at.split(".")[0],
             updated2: +new Date(val.updated_at.split(".")[0]),
@@ -370,7 +375,7 @@ function Home() {
               created: val.created_at,
               created2: +new Date(val.created_at),
               requester: val.user.username,
-              team:val.team.title,
+              team: val.team.title,
               customer: "Main",
               updated: val.updated_at,
               updated2: +new Date(val.updated_at),
@@ -398,7 +403,7 @@ function Home() {
     );
     setchange((prev) => !prev);
   };
-  const textArchive=archive ?"Archive":"Ticket"
+  const textArchive = archive ? "Archive" : "Ticket";
   return (
     <>
       <Helmet>

@@ -2,6 +2,7 @@ import {
   PlusSquareOutlined,
   QuestionCircleOutlined,
   UserOutlined,
+  IdcardOutlined,
 } from "@ant-design/icons";
 import React from "react";
 import { Layout } from "antd";
@@ -62,6 +63,62 @@ function Head(props) {
       </Menu.Item>
     </Menu>
   );
+
+  let newTicketElem = "";
+  let guide = "";
+  let btnAdmin = "";
+  let userElem = (
+    <a href="/login">
+      <span className="login">Login</span>
+    </a>
+  );
+  const token = localStorage.getItem("auth");
+  if (token) {
+    guide = (
+      <a href="/guide" title="Guide">
+        <span className="icons-list">
+          <QuestionCircleOutlined onClick={routeChange} />
+        </span>
+      </a>
+    );
+    newTicketElem = (
+      <abbr title="Add Ticket" className="icons-list">
+        <PlusSquareOutlined
+          style={{ paddingRight: "15px" }}
+          onClick={() => {
+            setNewTicket(true);
+          }}
+        />
+      </abbr>
+    );
+    if (localStorage.getItem("admin") == 1) {
+      btnAdmin = (
+        <a href="/admin" title="Admin">
+          <span className="icons-list">
+            <IdcardOutlined
+              twoToneColor="white"
+              style={{ padding: "0px 13px 0px 2px" }}
+            />
+          </span>
+        </a>
+      );
+    }
+    userElem = (
+      <Dropdown
+        overlay={menu}
+        visible={dropdown}
+        onVisibleChange={(e) => {
+          setDropdown(e);
+        }}
+        placement="bottomRight"
+      >
+        <span className="username-style icons-list">
+          {username}
+          <UserOutlined />
+        </span>
+      </Dropdown>
+    );
+  }
   return (
     <>
       <Layout className="layout">
@@ -69,36 +126,23 @@ function Head(props) {
           <Row wrap={false} className="display">
             <Col flex="none">
               <div>
-                <img
-                  src={image}
-                  width="40px"
-                  height="40px"
-                  alt="logo"
-                  onClick={dashboard}
-                />
+                <a to="/dashboard" title="Dashboard">
+                  <img
+                    src={image}
+                    width="40px"
+                    height="40px"
+                    alt="logo"
+                    onClick={dashboard}
+                  />
+                </a>
               </div>
             </Col>
             <Col>
-              {" "}
-              <div className="icons-list">
-                <PlusSquareOutlined
-                  style={{ padding: "0 14px" }}
-                  onClick={() => {
-                    setNewTicket(true);
-                  }}
-                />
-                <QuestionCircleOutlined
-                  style={{ padding: "0 13px" }}
-                  onClick={routeChange}
-                />
-                <Dropdown overlay={menu} visible={dropdown} onVisibleChange={(e)=>{setDropdown(e)}}  placement="bottomRight">
-                  <span className="username-style">
-                    {username}
-                    <UserOutlined
-                      style={{ fontSize: "20px", padding: "0px 0px 0px 12px" }}
-                    />
-                  </span>
-                </Dropdown>
+              <div>
+                {newTicketElem}
+                {btnAdmin}
+                {guide}
+                {userElem}
               </div>
             </Col>
           </Row>

@@ -56,46 +56,63 @@
 
 .ant-drawer-close {
     display: none !important;
-} 
-.ant-comment-content-author{
+}
+
+.ant-comment-content-author {
     flex-direction: column;
     justify-content: space-between;
 }
-.ticket-id{
+
+.ticket-id {
     color: #999;
     font-size: 14px;
 }
-.openTicket__subject{
+
+.openTicket__subject {
     display: block;
     font-weight: 600;
     font-size: 15px;
     margin-bottom: 10px;
 }
-.ant-tag-yellow{
-    color:yellow;
-    background-color:rgba(255, 255, 0, 0.479) ;
+
+.ant-tag-yellow {
+    color: yellow;
+    background-color: rgba(255, 255, 0, 0.479);
     border-color: yellow;
 }
-.ant-tag-blue{
-    color:blue;
-    background-color:rgba(0, 0, 255, 0.514) ;
+
+.ant-tag-blue {
+    color: blue;
+    background-color: rgba(0, 0, 255, 0.514);
     border-color: blue;
 }
-.header_open_ticket{
+
+.header_open_ticket {
     display: flex;
     justify-content: space-between;
 }
+
 .pending {
     margin-right: 15px;
+    color: #f72358 !important;
+    background: #fef0ff !important;
+    border-color: #f7adc8 !important;
 }
+
+.inprogress {
+    color: #531dab !important;
+    background: #f9f0ff !important;
+    border-color: #d3adf7 !important;
+}
+
 @media screen and (max-width:767px) {
-    .ant-drawer-content-wrapper{
+    .ant-drawer-content-wrapper {
         width: 100% !important;
     }
-    
 }
-@media screen and ( max-height: 450px ) {
-    .ant-drawer-body{
+
+@media screen and ( max-height: 450px) {
+    .ant-drawer-body {
         overflow: unset !important;
     }
 }

@@ -31,8 +31,14 @@ Header,
     font-size: 15px;
     padding: 0px 0px 0px 10px;
 }
+
+.login {
+    color: #fff;
+    font-size: 18px;
+}
+
 @media screen and (max-width:767px) {
-    .ant-layout-header{
-        padding: 0 20px !important; 
+    .ant-layout-header {
+        padding: 0 20px !important;
     }
 }

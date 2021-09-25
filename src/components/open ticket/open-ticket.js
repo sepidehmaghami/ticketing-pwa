@@ -27,7 +27,11 @@ const ExampleComment1 = (props) => {
           {props.name} <span>{props.email}</span>
         </div>
       }
-      datetime={<div className="mt-1">{props.date.split(".")[0].replace(/-/g,"/").replace("T"," - ")}</div>}
+      datetime={
+        <div className="mt-1">
+          {props.date.split(".")[0].replace(/-/g, "/").replace("T", " - ")}
+        </div>
+      }
       avatar={
         <Avatar className="b-color" alt="sepideh">
           <Gravatar email={props.email} className="CustomAvatar-image" />
@@ -212,31 +216,48 @@ function OpenTicket(props) {
     <>
       <Drawer
         title={[
-          <div key="2"  className="header_open_ticket">
+          <div key="2" className="header_open_ticket">
             <div>
-            <p className="p-align">
-              <ArrowLeftOutlined className="icon-back" onClick={onClose} />
-              <span className="ticket-id">ticket {props.data.key}</span>
-            </p>
-            <span>
-              <span className="openTicket__subject">{props.data.subject}</span>
-            </span>
-            <span>
-              <span className={"ant-tag " + classStatus}>
-                {props.data.status[0].toUpperCase()}
+              <p className="p-align">
+                <ArrowLeftOutlined className="icon-back" onClick={onClose} />
+                <span className="ticket-id">ticket {props.data.key}</span>
+              </p>
+              <span>
+                <span className="openTicket__subject">
+                  {props.data.subject}
+                </span>
               </span>
-            </span>
-            <span className="font-span">
-              - Created {props.data.created.split("T")[0].replace(/-/g,"/")} - Requester:{" "}
-              {props.data.requester}
-              <span className="color-name"></span>
-            </span>
+              <span>
+                <span className={"ant-tag " + classStatus}>
+                  {props.data.status[0].toUpperCase()}
+                </span>
+              </span>
+              <span className="font-span">
+                - Created {props.data.created.split("T")[0].replace(/-/g, "/")}{" "}
+                - Requester: {props.data.requester}
+                <span className="color-name"></span>
+              </span>
             </div>
             <div>
-          <span><Button onClick={()=>answered("pending")} type="danger" className="pending">Pending</Button></span>
-          <span><Button onClick={()=>answered("in progress")} type="primary">In Progress</Button></span>
-          </div>
-          </div>
+              <span>
+                <Button
+                  onClick={() => answered("pending")}
+                  type="danger"
+                  className="pending"
+                >
+                  Pending
+                </Button>
+              </span>
+              <span>
+                <Button
+                  onClick={() => answered("in progress")}
+                  className="inprogress"
+                >
+                  In Progress
+                </Button>
+              </span>
+            </div>
+          </div>,
         ]}
         width={720}
         onClose={onClose}
