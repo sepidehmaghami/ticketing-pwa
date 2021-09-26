@@ -91,18 +91,16 @@ function Head(props) {
         />
       </abbr>
     );
-    if (localStorage.getItem("admin") == 1) {
-      btnAdmin = (
-        <a href="/admin" title="Admin">
-          <span className="icons-list">
-            <IdcardOutlined
-              twoToneColor="white"
-              style={{ padding: "0px 13px 0px 2px" }}
-            />
-          </span>
-        </a>
-      );
-    }
+    btnAdmin = (
+      <a href="/admin" title="Admin">
+        <span className="icons-list">
+          <IdcardOutlined
+            twoToneColor="white"
+            style={{ padding: "0px 13px 0px 2px" }}
+          />
+        </span>
+      </a>
+    );
     userElem = (
       <Dropdown
         overlay={menu}

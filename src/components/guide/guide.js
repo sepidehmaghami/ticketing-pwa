@@ -1,6 +1,6 @@
 import "./guide-style.css";
 import Head from "../header/header";
-import { Layout, Breadcrumb } from "antd";
+import { Layout } from "antd";
 import { Helmet } from "react-helmet";
 const { Header, Content, Footer } = Layout;
 import logo from "../../assets/white-logo.svg";
@@ -11,14 +11,12 @@ function Guide() {
       <Helmet>
         <title>Ticketing - Guide Page</title>
       </Helmet>
-      <Layout className="layout">
+      <Layout className="layout" style={{ height: "100vh" }}>
         <Header>
           <Head />
         </Header>
 
         <Content style={{ padding: "0 100px" }}>
-          <Breadcrumb style={{ margin: "16px 0" }}>
-          </Breadcrumb>
           <div className="site-layout-content">
             <h2 className="arashweb">
               <a href="https://arashweb.com/fa/blog/">Arashweb Company</a>
