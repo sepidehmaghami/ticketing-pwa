@@ -170,7 +170,7 @@ function Forgot() {
       </Helmet>
       <Layout>
         <Content>
-          <Row>
+          <Row style={{ height: "100vh" }}>
             <Col className="item_center" span={12}>
               <div>
                 <img src={imagelogin} className="imglogo" alt="" />

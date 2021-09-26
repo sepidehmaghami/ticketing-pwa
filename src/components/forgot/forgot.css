@@ -1,45 +1,51 @@
-.item_center{
+.item_center {
     display: flex !important;
     justify-content: center;
     align-items: center;
     flex-direction: column;
 }
+
 .grayscale {
     filter: grayscale(100%);
-    position: relative; 
-    width: 100%; /* for IE 6 */
- }
+    position: relative;
+    width: 100%;
+    /* for IE 6 */
+}
 
- .original {
-    position: relative; 
-    width: 100%; /* for IE 6 */
- }
- 
-.para { 
-    position: absolute; 
-    bottom: 5%; 
-    left: 0; 
-    width: 100%; 
+.original {
+    position: relative;
+    width: 100%;
+    /* for IE 6 */
+}
+
+.para {
+    position: absolute;
+    bottom: 5%;
+    left: 0;
+    width: 100%;
     text-align: center;
     padding: 0px 40px;
- }
- 
-.para span { 
-    color: #000; 
-    padding: 50px; 
-    width: 100%;
- }
-
-.imglogo{
-    margin-top: 180%;
-    width:40px;
-    height:40px;
 }
+
+.para span {
+    color: #000;
+    padding: 50px;
+    width: 100%;
+}
+
+.imglogo {
+    margin-top: 180%;
+    width: 40px;
+    height: 40px;
+}
+
+
 /* .buttons {
     display: flex;
     justify-content: baseline;
 } */
-.login-form-button-purple{
+
+.login-form-button-purple {
     border: purple !important;
     background-color: purple !important;
     color: #fff !important;
@@ -47,7 +53,7 @@
     margin-bottom: 2px;
 }
 
-.login-form-button-blue{
+.login-form-button-blue {
     display: flex;
     border: purple !important;
     background-color: purple !important;
@@ -55,65 +61,69 @@
     width: 100%;
 }
 
-.ant-checkbox-inner{
+.ant-checkbox-inner {
     border: 1px solid purple !important;
 }
 
 .ant-checkbox-checked .ant-checkbox-inner {
     background-color: purple !important;
 }
-.p-size{
+
+.p-size {
     margin-top: 10px;
     font-size: 25px;
 }
 
-.note-size{
+.note-size {
     margin-top: 10px;
     font-size: 15px;
     color: rgb(124, 124, 124);
     padding-top: -10px;
 }
 
-.login-form-forgot{
+.login-form-forgot {
     color: black !important;
-    text-decoration:none !important;
-
+    text-decoration: none !important;
 }
 
-.a-style{
+.a-style {
     color: purple !important;
-    text-decoration:underline !important;
-
+    text-decoration: underline !important;
 }
-.ant-form{
+
+.ant-form {
     width: 60%;
 }
 
 .ant-input-size {
-    width: 430px ;
+    width: 430px;
 }
- [type=submit]:not(:disabled) {
+
+[type=submit]:not(:disabled) {
     width: 430px !important;
 }
-.width-style{
+
+.width-style {
     width: 430px;
     margin-bottom: 25%;
 }
+
 .ant-form label {
     margin-right: 45%;
 }
-.botoom-border{
+
+.botoom-border {
     text-align-last: center;
 }
 
 @media screen and (max-width:930px) {
-    .ant-input-size  {
+    .ant-input-size {
         width: 350px !important;
     }
-     [type=submit]:not(:disabled) {
+    [type=submit]:not(:disabled) {
         width: 350px !important;
     }
-    .width-style{
+    .width-style {
         width: 348px;
     }
     .ant-form label {
@@ -122,13 +132,13 @@
 }
 
 @media screen and (max-width:735px) {
-    .ant-input-size  {
+    .ant-input-size {
         width: 300px !important;
     }
-     [type=submit]:not(:disabled) {
+    [type=submit]:not(:disabled) {
         width: 300px !important;
     }
-    .width-style{
+    .width-style {
         width: 300px;
     }
     .ant-form label {
@@ -137,13 +147,13 @@
 }
 
 @media screen and (max-width:640px) {
-    .ant-input-size  {
+    .ant-input-size {
         width: 250px !important;
     }
-     [type=submit]:not(:disabled) {
+    [type=submit]:not(:disabled) {
         width: 250px !important;
     }
-    .width-style{
+    .width-style {
         width: 250px;
     }
     .ant-form label {
@@ -152,53 +162,54 @@
 }
 
 @media screen and (max-width:540px) {
-    .ant-input-size  {
+    .ant-input-size {
         width: 230px !important;
     }
-     [type=submit]:not(:disabled) {
+    [type=submit]:not(:disabled) {
         width: 230px !important;
     }
-    .width-style{
+    .width-style {
         width: 230px;
     }
     .ant-form label {
         margin-right: 1.5%;
     }
 }
+
 @media screen and (max-width:767px) {
     .ant-col-12 {
-        flex: 0 0 100% !important; 
+        flex: 0 0 100% !important;
         max-width: 100% !important;
     }
-    body{
+    body {
         position: relative;
     }
-    .original{
+    .original {
         position: absolute;
-        bottom: 10%;
+        bottom: 0%;
         opacity: 0.1;
     }
-    .width-style{
+    .width-style {
         margin-bottom: 4%;
     }
-    .para{
+    .para {
         position: relative;
         padding: 0px 17px;
     }
-     .botoom-border{
+    .botoom-border {
         padding-bottom: 25px!important;
-         border-bottom: 1px solid purple;
-     }
-     .para span { 
-        padding: 10px; 
-     }
-     .para{
+        border-bottom: 1px solid purple;
+    }
+    .para span {
+        padding: 10px;
+    }
+    .para {
         position: relative !important;
         padding: 0px 17px;
-     }
+    }
 }
 
-.flex-space{
+.flex-space {
     display: flex !important;
     flex-direction: column !important;
     align-items: center !important;

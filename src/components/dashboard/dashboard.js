@@ -418,7 +418,7 @@ function Home() {
           />
         </Header>
 
-        <Content style={{ padding: "0 100px" }}>
+        <Content style={{ padding: "0 50px", margin: "0px 50px" }}>
           <Breadcrumb style={{ margin: "16px 0" }}>
             <Row wrap={false} className="display">
               <Col flex="none">
