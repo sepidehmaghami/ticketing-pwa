@@ -92,10 +92,6 @@
     min-height: 100vh !important;
 }
 
-.login__right-image img {
-    height: 100%;
-}
-
 @media screen and (max-width:930px) {
     .ant-input-size {
         width: 350px !important;
