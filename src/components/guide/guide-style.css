@@ -44,16 +44,14 @@
 Footer {
     display: flex;
     flex-direction: row;
-    /* margin-top: 178px; */
+    flex-wrap: wrap;
     width: 100%;
-    height: 140px;
     background-color: purple !important;
 }
 
 .footer_content {
     display: flex;
     justify-content: space-between;
-    align-items: flex-end;
     color: #dee3e4;
 }
 
@@ -66,9 +64,13 @@ Footer {
 }
 
 Footer img {
-    padding: 10px 80px 20px 75px;
+    padding: 7px 60px 5px 65px;
 }
 
 .layout {
     background-color: white !important;
+}
+
+.ant-layout-footer {
+    padding: px 50px !important;
 }

@@ -11,18 +11,18 @@ function Guide() {
       <Helmet>
         <title>Ticketing - Guide Page</title>
       </Helmet>
-      <Layout className="layout" style={{ height: "100vh" }}>
+      <Layout className="layout" style={{ minHeight: "100vh;" }}>
         <Header>
           <Head />
         </Header>
 
-        <Content style={{ padding: "0 100px" }}>
+        <Content style={{ margin: "24px 16px 0", overflow: "initial" }}>
           <div className="site-layout-content">
             <h2 className="arashweb">
               <a href="https://arashweb.com/fa/blog/">Arashweb Company</a>
             </h2>
             <div className="or"></div>
-            <div>
+            <div style={{ padding: "0 40px" }}>
               <h4 className="goal">Team&apos;s Goal : </h4>
               <h5 className="goal_context">
                 This is a platform for communication between the employer and
@@ -38,7 +38,7 @@ function Guide() {
             <div className="or"></div>
           </div>
         </Content>
-        <Footer className="footer_content">
+        <Footer style={{ textAlign: "center" }} className="footer_content">
           <a href="https://arashweb.com/fa/blog/">
             <img src={logo}></img>
             <h4 className="white">Arashweb Company</h4>
@@ -57,7 +57,7 @@ function Guide() {
             <div className="footer_content">
               <a href="info@arashweb.ir">Email: info@arashweb.ir</a>
             </div>
-          </div>
+          </div>{" "}
         </Footer>
       </Layout>
     </>
