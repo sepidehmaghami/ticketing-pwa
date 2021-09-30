@@ -186,7 +186,7 @@ function Forgot() {
               <div>
                 <img
                   src={imgLogin}
-                  className="original"
+                  className="original loginImag"
                   width="100%"
                   height="721vh"
                   alt=""

@@ -12,6 +12,10 @@
     /* for IE 6 */
 }
 
+.loginImag {
+    height: 100vh;
+}
+
 .para {
     position: absolute;
     bottom: 5%;
