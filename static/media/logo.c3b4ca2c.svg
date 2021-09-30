@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="80" height="90" viewBox="0 0 80 95">
+    <defs>
+        <linearGradient id="7263sxmila" x1=".203" x2=".97" y1=".636" y2=".95" gradientUnits="objectBoundingBox">
+            <stop offset="0" stop-color="#851f9a"/>
+            <stop offset=".301" stop-color="#7d1b7d"/>
+            <stop offset="1" stop-color="#3f0e3f"/>
+        </linearGradient>
+        <linearGradient id="me01mpcflb" x1=".306" x2="1" y1=".519" y2=".972" gradientUnits="objectBoundingBox">
+            <stop offset="0" stop-color="#70164a"/>
+            <stop offset=".326" stop-color="#74185c"/>
+            <stop offset="1" stop-color="#74185c"/>
+        </linearGradient>
+    </defs>
+    <g>
+        <path fill="url(#7263sxmila)" d="M40.414 40.237h-5.276 5.272l-4.9-7.944h-.028L24.253 13.41l-11.58 19.467h17.922l4.54 7.353H0L24.253 0l24.253 40.23h-8.1v.006z" transform="translate(0 1.612)"/>
+        <path fill="url(#me01mpcflb)" d="M27.657 40.34l-15.68-25.735-.108.148L4.675 27.2 0 19.377 11.524.031l.006-.018.013-.013.006.013L38.236 0 11.55.024 27.172 25.8 42.886 0h8.881l-24.11 40.34z" transform="translate(0 1.612) translate(43.851)"/>
+    </g>
+    <path fill="none" d="M0 0H95.296V43.564H0z" transform="translate(.161)"/>
+</svg>

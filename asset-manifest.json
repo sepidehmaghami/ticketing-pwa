@@ -1,0 +1,28 @@
+{
+  "files": {
+    "main.css": "/ticketing-pwa/static/css/main.4783a558.chunk.css",
+    "main.js": "/ticketing-pwa/static/js/main.9e87a3b6.chunk.js",
+    "main.js.map": "/ticketing-pwa/static/js/main.9e87a3b6.chunk.js.map",
+    "runtime-main.js": "/ticketing-pwa/static/js/runtime-main.43b10f54.js",
+    "runtime-main.js.map": "/ticketing-pwa/static/js/runtime-main.43b10f54.js.map",
+    "static/css/2.09765660.chunk.css": "/ticketing-pwa/static/css/2.09765660.chunk.css",
+    "static/js/2.094d0916.chunk.js": "/ticketing-pwa/static/js/2.094d0916.chunk.js",
+    "static/js/2.094d0916.chunk.js.map": "/ticketing-pwa/static/js/2.094d0916.chunk.js.map",
+    "static/js/3.4f730659.chunk.js": "/ticketing-pwa/static/js/3.4f730659.chunk.js",
+    "static/js/3.4f730659.chunk.js.map": "/ticketing-pwa/static/js/3.4f730659.chunk.js.map",
+    "index.html": "/ticketing-pwa/index.html",
+    "static/css/2.09765660.chunk.css.map": "/ticketing-pwa/static/css/2.09765660.chunk.css.map",
+    "static/css/main.4783a558.chunk.css.map": "/ticketing-pwa/static/css/main.4783a558.chunk.css.map",
+    "static/js/2.094d0916.chunk.js.LICENSE.txt": "/ticketing-pwa/static/js/2.094d0916.chunk.js.LICENSE.txt",
+    "static/media/login.d01e0b22.jpg": "/ticketing-pwa/static/media/login.d01e0b22.jpg",
+    "static/media/logo.c3b4ca2c.svg": "/ticketing-pwa/static/media/logo.c3b4ca2c.svg",
+    "static/media/white-logo.31b7a34d.svg": "/ticketing-pwa/static/media/white-logo.31b7a34d.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.43b10f54.js",
+    "static/css/2.09765660.chunk.css",
+    "static/js/2.094d0916.chunk.js",
+    "static/css/main.4783a558.chunk.css",
+    "static/js/main.9e87a3b6.chunk.js"
+  ]
+}
