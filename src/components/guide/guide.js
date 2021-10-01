@@ -11,12 +11,12 @@ function Guide() {
       <Helmet>
         <title>Ticketing - Guide Page</title>
       </Helmet>
-      <Layout className="layout" style={{ minHeight: "100vh;" }}>
+      <Layout className="layout" style={{ height: "100vh" }}>
         <Header>
           <Head />
         </Header>
 
-        <Content style={{ margin: "24px 16px 0", overflow: "initial" }}>
+        <Content style={{ overflow: "auto" }}>
           <div className="site-layout-content">
             <h2 className="arashweb">
               <a href="https://arashweb.com/fa/blog/">Arashweb Company</a>
