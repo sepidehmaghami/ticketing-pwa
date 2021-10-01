@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/ticketing-pwa/static/css/main.94a35bbf.chunk.css",
-    "main.js": "/ticketing-pwa/static/js/main.9e87a3b6.chunk.js",
-    "main.js.map": "/ticketing-pwa/static/js/main.9e87a3b6.chunk.js.map",
+    "main.js": "/ticketing-pwa/static/js/main.aa9334cd.chunk.js",
+    "main.js.map": "/ticketing-pwa/static/js/main.aa9334cd.chunk.js.map",
     "runtime-main.js": "/ticketing-pwa/static/js/runtime-main.43b10f54.js",
     "runtime-main.js.map": "/ticketing-pwa/static/js/runtime-main.43b10f54.js.map",
     "static/css/2.09765660.chunk.css": "/ticketing-pwa/static/css/2.09765660.chunk.css",
@@ -23,6 +23,6 @@
     "static/css/2.09765660.chunk.css",
     "static/js/2.094d0916.chunk.js",
     "static/css/main.94a35bbf.chunk.css",
-    "static/js/main.9e87a3b6.chunk.js"
+    "static/js/main.aa9334cd.chunk.js"
   ]
 }
