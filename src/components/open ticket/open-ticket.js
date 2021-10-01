@@ -7,6 +7,7 @@ import JoditEditor from "jodit-react";
 import { ArrowLeftOutlined } from "@ant-design/icons";
 import axios from "axios";
 import Gravatar from "react-gravatar";
+import moment from "jalali-moment";
 
 const ExampleComment1 = (props) => {
   let usernameSet = localStorage.getItem("username"),
@@ -156,12 +157,13 @@ function OpenTicket(props) {
   let commented;
   if (Load) {
     commented = props.comments.map((val, key) => {
+      const timer = moment(val.updated_at).format("YYYY/M/D - H:m:s");
       return (
         <ExampleComment1
           reply={replyfunc}
           key={key}
           name={val.user.username}
-          date={val.updated_at}
+          date={timer}
           email={val.user.email}
           message={val.body}
         ></ExampleComment1>

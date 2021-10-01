@@ -14,6 +14,7 @@ import debounce from "lodash/debounce";
 const { Header, Content } = Layout;
 const { Search } = Input;
 import { Button } from "antd";
+import moment from "jalali-moment";
 
 function Home() {
   const [data1, setdata1] = useState([]);
@@ -118,6 +119,7 @@ function Home() {
           created: find.created_at,
           created2: +new Date(find.created_at),
           requester: find.user.username,
+          updated2: +new Date(find.updated_at),
         });
         setcommentTicket(find.comments);
         setOpenTicket(true);
@@ -191,7 +193,7 @@ function Home() {
     },
     {
       title: "Created",
-      dataIndex: "created",
+      dataIndex: "created3",
       sorter: (x, y) => x.created2 - y.created2,
     },
 
@@ -215,7 +217,7 @@ function Home() {
     },
     {
       title: "Updated",
-      dataIndex: "updated",
+      dataIndex: "updated3",
       sorter: (a, b) => a.updated2 - b.updated2,
     },
     {
@@ -283,21 +285,27 @@ function Home() {
       .then((result) => {
         arr = [];
         const resul = [...result];
-        console.log(resul[0].created_at.split(".")[0]);
-
         resul.map((val) => {
+          var creat_time = moment(val.created_at).format("YYYY/M/D -  H:m:s");
+          var update_time = moment(val.updated_at).format("YYYY/M/D - H:m:s");
           arr.push({
             key: val.id,
             status: [val.tag],
             number: val.id,
             subject: val.subject,
             created: val.created_at.split(".")[0],
-            created2: +new Date(val.created_at.split(".")[0]),
+            created2: +new Date(
+              val.created_at.split(".")[0].split("T").join("\n")
+            ),
+            created3: creat_time,
             requester: val.user.username,
             team: val.team.title,
             customer: "Main",
             updated: val.updated_at.split(".")[0],
-            updated2: +new Date(val.updated_at.split(".")[0]),
+            updated2: +new Date(
+              val.updated_at.split(".")[0].split("T").join("\n")
+            ),
+            updated3: update_time,
           });
         });
         return result;
@@ -373,12 +381,16 @@ function Home() {
               number: arr.length + 1,
               subject: val.subject,
               created: val.created_at,
-              created2: +new Date(val.created_at),
+              created2: +new Date(
+                val.created_at.split(".")[0].split("T").join("\n")
+              ),
               requester: val.user.username,
               team: val.team.title,
               customer: "Main",
               updated: val.updated_at,
-              updated2: +new Date(val.updated_at),
+              updated2: +new Date(
+                val.updated_at.split(".")[0].split("T").join("\n")
+              ),
             });
           });
           return result;
