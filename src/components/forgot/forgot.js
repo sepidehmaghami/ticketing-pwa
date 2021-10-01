@@ -82,7 +82,7 @@ function Forgot() {
           rules={[
             {
               required: true,
-              message: "Please input your Email!",
+              message: "Please enter your Email!",
             },
           ]}
         >
@@ -122,7 +122,7 @@ function Forgot() {
             rules={[
               {
                 required: true,
-                message: "Please input your token!",
+                message: "Please enter your token!",
               },
             ]}
           >
@@ -134,7 +134,7 @@ function Forgot() {
             rules={[
               {
                 required: true,
-                message: "Please input your uid!",
+                message: "Please enter your uid!",
               },
             ]}
           >
@@ -146,7 +146,7 @@ function Forgot() {
             rules={[
               {
                 required: true,
-                message: "Please input your new password!",
+                message: "Please enter your new password!",
               },
             ]}
           >

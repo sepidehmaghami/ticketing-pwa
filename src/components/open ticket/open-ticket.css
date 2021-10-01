@@ -76,8 +76,8 @@
 }
 
 .ant-tag-yellow {
-    color: yellow;
-    background-color: rgba(255, 255, 0, 0.479);
+    color: rgb(255, 166, 0);
+    background-color: rgba(255, 255, 0, 0.187);
     border-color: yellow;
 }
 
