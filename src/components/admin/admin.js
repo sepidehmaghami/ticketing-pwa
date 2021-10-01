@@ -135,9 +135,9 @@ function Admin() {
                   deletUser(record.key);
                 }}
               >
-                <a> remove user </a>{" "}
-              </Popconfirm>{" "}
-            </Space>{" "}
+                <a> remove user </a>
+              </Popconfirm>
+            </Space>
           </>
         );
       },
@@ -246,18 +246,17 @@ function Admin() {
   }
   return (
     <>
-      {" "}
-      {redirectelem}{" "}
+      {redirectelem}
       <Helmet>
-        <title> Ticketing - admin </title>{" "}
-      </Helmet>{" "}
+        <title> Ticketing - admin </title>
+      </Helmet>
       <Layout className="layout">
         <Header>
           <Head
             changeTicket={() => {
               setchange((prev) => !prev);
             }}
-          />{" "}
+          />
         </Header>
         <Content style={{ padding: "0 100px" }}>
           <Breadcrumb style={{ margin: "16px 0" }}>
@@ -269,35 +268,35 @@ function Admin() {
                     onClick={() => setmodalOpen(true)}
                     size={20}
                   >
-                    Add New User{" "}
-                  </Button>{" "}
-                </div>{" "}
-              </Col>{" "}
+                    Add New User
+                  </Button>
+                </div>
+              </Col>
               <Col>
                 <div className="search-table">
                   <Pagination
                     defaultCurrent={1}
                     onChange={changePage}
                     total={curentData}
-                  />{" "}
-                </div>{" "}
-              </Col>{" "}
-            </Row>{" "}
-          </Breadcrumb>{" "}
+                  />
+                </div>
+              </Col>
+            </Row>
+          </Breadcrumb>
           <div className="site-layout-content">
             <Table
               columns={columns}
               dataSource={data1}
               scroll={{ x: "calc(650px + 50%)" }}
-            />{" "}
-          </div>{" "}
-        </Content>{" "}
+            />
+          </div>
+        </Content>
         <div className="chart">
           <div className="chartContainer">
-            <div className="titleChart"> chart site </div>{" "}
-            <Bar data={data} options={options} />{" "}
-          </div>{" "}
-        </div>{" "}
+            <div className="titleChart"> chart site </div>
+            <Bar data={data} options={options} />
+          </div>
+        </div>
         <Modal
           title={[<h2 key="1"> Add new user </h2>]}
           centered
@@ -309,14 +308,14 @@ function Admin() {
               onClick={() => setmodalOpen(false)}
               className="btn-cancel  btn-modal"
             >
-              Cancel{" "}
+              Cancel
             </Button>,
             <Button
               key="submit"
               onClick={(e) => submitHandler(e)}
               className="btn-modal"
             >
-              Add user{" "}
+              Add user
             </Button>,
           ]}
         >
@@ -332,7 +331,7 @@ function Admin() {
               placeholder="Email"
               className="ant-icon"
               prefix={<MailOutlined />}
-            />{" "}
+            />
             <br />
             <br />
             <Input
@@ -346,7 +345,7 @@ function Admin() {
               placeholder="Name"
               className="ant-icon"
               prefix={<UserOutlined />}
-            />{" "}
+            />
             <br />
             <br />
             <Input
@@ -360,7 +359,7 @@ function Admin() {
               placeholder="Last Name"
               className="ant-icon"
               prefix={<UserOutlined />}
-            />{" "}
+            />
             <br />
             <br />
             <Input
@@ -374,7 +373,7 @@ function Admin() {
               placeholder="Password"
               className="ant-icon"
               prefix={<LockOutlined />}
-            />{" "}
+            />
             <br />
             <br />
             <Input
@@ -388,7 +387,7 @@ function Admin() {
               placeholder="Confirm Password"
               className="ant-icon"
               prefix={<LockOutlined />}
-            />{" "}
+            />
             <br />
             <br />
             <Input
@@ -402,9 +401,9 @@ function Admin() {
               placeholder="teams"
               className="ant-icon"
               prefix={<UserOutlined />}
-            />{" "}
+            />
             <br />
-            <br />{" "}
+            <br />
             {/* <div className="b-border">
                                     <span className="m-r">superuser </span>
                                     <Radio.Group onChange={(e)=>{
@@ -414,9 +413,9 @@ function Admin() {
                                     <Radio value={true}>yes</Radio>
                                     <Radio value={false}>no</Radio>
                                     </Radio.Group>
-                                </div> */}{" "}
+                                </div> */}
             <div className="b-border">
-              <span className="m-r"> staff </span>{" "}
+              <span className="m-r"> staff </span>
               <Radio.Group
                 onChange={(e) => {
                   setformdata((prev) => {
@@ -425,12 +424,12 @@ function Admin() {
                 }}
                 value={formdata.staff}
               >
-                <Radio value={true}> yes </Radio>{" "}
-                <Radio value={false}> no </Radio>{" "}
-              </Radio.Group>{" "}
-            </div>{" "}
+                <Radio value={true}> yes </Radio>
+                <Radio value={false}> no </Radio>
+              </Radio.Group>
+            </div>
             <div>
-              <span className="m-r"> active </span>{" "}
+              <span className="m-r"> active </span>
               <Radio.Group
                 onChange={(e) => {
                   setformdata((prev) => {
@@ -439,13 +438,13 @@ function Admin() {
                 }}
                 value={formdata.active}
               >
-                <Radio value={true}> yes </Radio>{" "}
-                <Radio value={false}> no </Radio>{" "}
-              </Radio.Group>{" "}
-            </div>{" "}
-          </form>{" "}
-        </Modal>{" "}
-      </Layout>{" "}
+                <Radio value={true}> yes </Radio>
+                <Radio value={false}> no </Radio>
+              </Radio.Group>
+            </div>
+          </form>
+        </Modal>
+      </Layout>
     </>
   );
 }

@@ -58,7 +58,7 @@ function Head(props) {
           onConfirm={logOut}
           onCancel={cancel}
         >
-          <a href={"./login"}>Log out</a>
+          <a href="./login">Log out</a>
         </Popconfirm>
       </Menu.Item>
     </Menu>

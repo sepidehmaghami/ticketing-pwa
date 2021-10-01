@@ -1,5 +1,5 @@
 import "./login.css";
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { Layout, message } from "antd";
 import { Row, Col } from "antd";
 import imgLogin from "../../assets/login.jpg";
@@ -12,8 +12,8 @@ import axios from "axios";
 
 const { Content } = Layout;
 function Login() {
-  const [red, setred] = useState(false);
-  const [check, setcheck] = useState(false);
+  // const [red, setred] = useState(false);
+  // const [check, setcheck] = useState(false);
   const [form] = Form.useForm();
   const storage = localStorage.getItem("login");
   useEffect(() => {
@@ -26,6 +26,8 @@ function Login() {
     }
   }, []);
 
+  const history = useHistory();
+
   const handleFormSubmit = (values) => {
     const name = values.username,
       pass = values.password;
@@ -36,41 +38,30 @@ function Login() {
       })
       .then((res) => {
         if (res.status === 200) {
-          if (check === true) {
-            localStorage.setItem(
-              "login",
-              JSON.stringify({
-                username: name,
-                password: pass,
-              })
-            );
-          }
+          console.log(res.status);
+          localStorage.setItem(
+            "login",
+            JSON.stringify({
+              // change object to json
+              username: name,
+              password: pass,
+            })
+          );
           return res.data;
-        } else if (res.status === 401) {
-          message.error("username or password is invalid");
+        } else {
+          message.error("Please check your username and password");
         }
       })
       .then((res) => {
         localStorage.setItem("auth", "true");
         localStorage.setItem("token", res.access);
-        return localStorage.setItem("username", name);
+        localStorage.setItem("username", name);
+        history.push("/dashboard");
       })
-      .then(() => {
-        setTimeout(() => {
-          localStorage.removeItem("token");
-          localStorage.removeItem("auth");
-          localStorage.removeItem("username");
-        }, 3600 * 3 * 1000);
-        setred(true);
-      })
-      .catch((err) => {
-        console.log(err.message);
+      .catch(() => {
+        message.error("Please check your username and password");
       });
   };
-  const history = useHistory();
-  if (red) {
-    history.push("/");
-  }
 
   return (
     <>
@@ -145,9 +136,10 @@ function Login() {
                     <div className="width-style">
                       <Form.Item name="remember" noStyle>
                         <Checkbox
-                          onChange={(e) => {
-                            setcheck(e.target.checked);
-                          }}
+                          value="remember"
+                          // onChange={(e) => {
+                          // setcheck(e.target.checked);
+                          // }}
                         >
                           Remember me
                         </Checkbox>
