@@ -77,13 +77,13 @@
 
 .ant-tag-yellow {
     color: rgb(255, 166, 0);
-    background-color: rgba(255, 255, 0, 0.187);
+    background-color: rgba(255, 255, 0, 0.088);
     border-color: yellow;
 }
 
 .ant-tag-blue {
     color: blue;
-    background-color: rgba(0, 0, 255, 0.514);
+    background-color: rgba(0, 0, 255, 0.088);
     border-color: blue;
 }
 

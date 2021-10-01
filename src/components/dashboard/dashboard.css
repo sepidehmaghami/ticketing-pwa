@@ -15,6 +15,11 @@
     background-color: #ebe9e9 !important;
 }
 
+.ant-table-thead>tr>th,
+.ant-table-tbody>tr>td {
+    text-align: center !important;
+}
+
 .ant-input-group>.ant-input:first-child,
 .ant-input-group-addon:first-child {
     height: 32px;
